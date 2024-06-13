@@ -33,5 +33,7 @@ namespace Trendz.Infrastructure.Data.Models
 
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; } = null!;
+
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

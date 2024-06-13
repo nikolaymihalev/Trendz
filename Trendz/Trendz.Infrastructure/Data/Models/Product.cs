@@ -46,5 +46,7 @@ namespace Trendz.Infrastructure.Data.Models
 
         [ForeignKey(nameof(BrandId))]
         public Brand Brand { get; set; } = null!;
+
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
