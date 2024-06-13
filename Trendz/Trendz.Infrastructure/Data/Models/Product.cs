@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Trendz.Infrastructure.Constants;
 
 namespace Trendz.Infrastructure.Data.Models
@@ -39,5 +40,11 @@ namespace Trendz.Infrastructure.Data.Models
         [Comment("Date the product was added")]
         [Required]
         public DateTime DateAdded { get; set; }
+
+        [ForeignKey(nameof(CategoryId))]
+        public Category Category { get; set; } = null!;
+
+        [ForeignKey(nameof(BrandId))]
+        public Brand Brand { get; set; } = null!;
     }
 }

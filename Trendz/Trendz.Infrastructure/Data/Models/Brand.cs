@@ -19,5 +19,7 @@ namespace Trendz.Infrastructure.Data.Models
         [Comment("Date the brand was added")]
         [Required]
         public DateTime DateAdded { get; set; }
+
+        public ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }
