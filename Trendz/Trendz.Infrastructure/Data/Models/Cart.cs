@@ -22,5 +22,7 @@ namespace Trendz.Infrastructure.Data.Models
 
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; } = null!;
+
+        public ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
     }
 }
