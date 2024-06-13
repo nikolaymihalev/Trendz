@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Trendz.Infrastructure.Constants;
 
 namespace Trendz.Infrastructure.Data.Models
 {
@@ -12,7 +13,7 @@ namespace Trendz.Infrastructure.Data.Models
 
         [Comment("Category name")]
         [Required]
-        [MaxLength(50)]
+        [MaxLength(ValidationConstants.NameMaxLength)]
         public string Name { get; set; } = string.Empty;
 
         [Comment("Date the category was added")]

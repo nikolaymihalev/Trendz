@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Trendz.Infrastructure.Constants;
 
 namespace Trendz.Infrastructure.Data.Models
 {
@@ -11,12 +12,12 @@ namespace Trendz.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Comment("Product name")]
-        [MaxLength(150)]
+        [MaxLength(ValidationConstants.ProductNameMaxLength)]
         [Required]
         public string Name { get; set; } = string.Empty;
 
         [Comment("Product description")]
-        [MaxLength(1000)]
+        [MaxLength(ValidationConstants.ProductDescriptionMaxLength)]
         [Required]
         public string Description { get; set; } = string.Empty;
 
