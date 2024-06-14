@@ -17,6 +17,7 @@ namespace Trendz.Infrastructure.Data.Models
         public int ProductId { get; set; }
 
         [Comment("User identifier")]
+        [Required]
         public string UserId { get; set; } = string.Empty;
 
         [Comment("Review rating")]
