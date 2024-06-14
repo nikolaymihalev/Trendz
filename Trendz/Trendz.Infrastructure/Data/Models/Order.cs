@@ -35,5 +35,6 @@ namespace Trendz.Infrastructure.Data.Models
         public IdentityUser User { get; set; } = null!;
 
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public ICollection<Shipping> Shippings { get; set; } = new List<Shipping>();
     }
 }
