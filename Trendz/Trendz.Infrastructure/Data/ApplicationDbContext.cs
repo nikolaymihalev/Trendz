@@ -26,6 +26,7 @@ namespace Trendz.Infrastructure.Data
         public DbSet<Wishlist> Wishlists { get; set; } = null!;
         public DbSet<WishlistItem> WishlistItems { get; set; } = null!;
         public DbSet<Color> Colors { get; set; } = null!;
+        public DbSet<Size> Sizes { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
