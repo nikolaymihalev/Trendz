@@ -53,5 +53,6 @@ namespace Trendz.Infrastructure.Data.Models
         public ICollection<WishlistItem> WishlistItems { get; set; } = new List<WishlistItem>();
         public ICollection<Discount> Discounts { get; set; } = new List<Discount>();
         public ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
+        public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
     }
 }
