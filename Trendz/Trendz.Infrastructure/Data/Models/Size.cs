@@ -13,5 +13,7 @@ namespace Trendz.Infrastructure.Data.Models
         [Comment("Size name")]
         [Required]
         public string Name { get; set; } = string.Empty;
+
+        public ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
     }
 }

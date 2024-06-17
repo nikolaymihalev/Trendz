@@ -17,5 +17,7 @@ namespace Trendz.Infrastructure.Data.Models
         [Comment("Color hexvalue")]
         [Required]
         public string HexValue { get; set; } = string.Empty;
+
+        public ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
     }
 }

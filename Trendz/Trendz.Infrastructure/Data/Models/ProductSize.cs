@@ -4,23 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trendz.Infrastructure.Data.Models
 {
-    [Comment("Product image entity")]
-    public class ProductImage
+    [Comment("Product Size mapping entity")]
+    public class ProductSize
     {
-        [Comment("Image identifier")]
-        [Key]
-        public int Id { get; set; }
-
         [Comment("Product identifier")]
         [Required]
         public int ProductId { get; set; }
 
-        [Comment("Image file")]
+        [Comment("Size identifier")]
         [Required]
-        [Column(TypeName = "varbinary(MAX)")]
-        public byte[] Image { get; set; } = null!;
+        public int SizeId { get; set; }
 
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
+
+        [ForeignKey(nameof(SizeId))]
+        public Size Size { get; set; } = null!;
     }
 }

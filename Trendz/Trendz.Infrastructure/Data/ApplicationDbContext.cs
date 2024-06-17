@@ -28,6 +28,8 @@ namespace Trendz.Infrastructure.Data
         public DbSet<Color> Colors { get; set; } = null!;
         public DbSet<Size> Sizes { get; set; } = null!;
         public DbSet<ProductImage> ProductImages { get; set; } = null!;
+        public DbSet<ProductColor> ProductColors { get; set; } = null!;
+        public DbSet<ProductSize> ProductSizes { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -50,6 +52,16 @@ namespace Trendz.Infrastructure.Data
             builder.Entity<Discount>()
                 .Property(p => p.DiscountPercentage)
                 .HasPrecision(14, 2);
+
+            builder.Entity<ProductColor>()
+                .HasOne(x => x.Product)
+                .WithMany(x => x.ProductColors)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProductSize>()
+                .HasOne(x => x.Product)
+                .WithMany(x => x.ProductSizes)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }
