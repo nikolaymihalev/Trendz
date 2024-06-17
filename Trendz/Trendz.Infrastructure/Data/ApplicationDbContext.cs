@@ -58,10 +58,16 @@ namespace Trendz.Infrastructure.Data
                 .WithMany(x => x.ProductColors)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<ProductColor>()
+               .HasKey(x => new { x.ProductId, x.ColorId });
+
             builder.Entity<ProductSize>()
                 .HasOne(x => x.Product)
                 .WithMany(x => x.ProductSizes)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProductSize>()
+              .HasKey(x => new { x.ProductId, x.SizeId });
 
             base.OnModelCreating(builder);
         }
