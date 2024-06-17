@@ -1,31 +1,50 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
+using Trendz.Infrastructure.Data;
+
 namespace Trendz.Infrastructure.Common
 {
     public class Repository : IRepository
     {
-        public Task AddAsync<T>(T entity) where T : class
+        public DbContext Context { get; set; }
+
+        private DbSet<T> DbSet<T>() where T : class
         {
-            throw new NotImplementedException();
+            return this.Context.Set<T>();
+        }
+
+        public Repository(ApplicationDbContext context)
+        {
+            Context = context;
+        }
+
+        public async Task AddAsync<T>(T entity) where T : class
+        {
+            await DbSet<T>().AddAsync(entity);
         }
 
         public IQueryable<T> AllReadonly<T>() where T : class
         {
-            throw new NotImplementedException();
+            return DbSet<T>().AsNoTracking();
         }
 
-        public Task DeleteAsync<T>(object id) where T : class
+        public async Task DeleteAsync<T>(object id) where T : class
         {
-            throw new NotImplementedException();
+            T? entity = await GetByIdAsync<T>(id);
+
+            if(entity != null)
+            {
+                DbSet<T>().Remove(entity);
+            }
         }
 
-        public Task<T?> GetByIdAsync<T>(object id) where T : class
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
-            throw new NotImplementedException();
+            return await DbSet<T>().FindAsync(id);
         }
 
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await Context.SaveChangesAsync();
         }
     }
 }
