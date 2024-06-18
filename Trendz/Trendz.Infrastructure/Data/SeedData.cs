@@ -16,6 +16,8 @@ namespace Trendz.Infrastructure.Data
             SeedImages();
             SeedColors();
             SeedSizes();
+            SeedProductColors();
+            SeedProductSizes();
         }
 
         public IdentityUser Guest { get; set; } = null!;
@@ -32,6 +34,10 @@ namespace Trendz.Infrastructure.Data
         public Color White { get; set; } = null!;
         public Size MSize { get; set; } = null!;
         public Size SSize { get; set; } = null!;
+        public ProductColor ProductColorBlack { get; set; } = null!;
+        public ProductColor ProductColorWhite { get; set; } = null!;
+        public ProductSize ProductSizeM { get; set; } = null!;
+        public ProductSize ProductSizeS { get; set; } = null!;
 
         private void SeedUsers() 
         {
@@ -166,6 +172,36 @@ namespace Trendz.Infrastructure.Data
             {
                 Id = 2,
                 Name = "S Size"
+            };
+        }
+
+        private void SeedProductColors() 
+        {
+            ProductColorBlack = new ProductColor()
+            {
+                ProductId = 1,
+                ColorId = 1
+            };
+
+            ProductColorWhite = new ProductColor()
+            {
+                ProductId = 1,
+                ColorId = 2
+            };
+        }
+
+        private void SeedProductSizes()
+        {
+            ProductSizeM = new ProductSize()
+            {
+                ProductId = 1,
+                SizeId = 1
+            };
+
+            ProductSizeS = new ProductSize()
+            {
+                ProductId = 1,
+                SizeId = 2
             };
         }
     }
