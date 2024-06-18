@@ -13,6 +13,8 @@ namespace Trendz.Infrastructure.Data
             SeedCarts();
             SeedWishlists();
             SeedProducts();
+            SeedImages();
+            SeedColors();
         }
 
         public IdentityUser Guest { get; set; } = null!;
@@ -23,6 +25,10 @@ namespace Trendz.Infrastructure.Data
         public Cart Cart { get; set; } = null!;
         public Wishlist Wishlist { get; set; } = null!;
         public Product BlackTshirt { get; set; } = null!;
+        public ProductImage BlackTshirtFirstImage { get; set; } = null!;
+        public ProductImage BlackTshirtSecondImage { get; set; } = null!;
+        public Color Black { get; set; } = null!;
+        public Color White { get; set; } = null!;
 
         private void SeedUsers() 
         {
@@ -108,6 +114,40 @@ namespace Trendz.Infrastructure.Data
                 CategoryId = 1,
                 BrandId = 1,
                 DateAdded = DateTime.Parse("17/06/2024")
+            };
+        }
+
+        private void SeedImages()
+        {
+            BlackTshirtFirstImage = new ProductImage()
+            {
+                Id = 1,
+                ProductId = 1,
+                Image = File.ReadAllBytes(Path.Combine(@"Images", "firstimage.png")),
+            };
+
+            BlackTshirtSecondImage = new ProductImage()
+            {
+                Id = 2,
+                ProductId = 1,
+                Image = File.ReadAllBytes(Path.Combine(@"Images", "secondimage.png")),
+            };
+        }
+
+        private void SeedColors() 
+        {
+            Black = new Color()
+            {
+                Id = 1,
+                Name = "Black",
+                HexValue = "#000000"
+            };
+
+            White = new Color()
+            {
+                Id = 2,
+                Name = "White",
+                HexValue = "#fff"
             };
         }
     }
