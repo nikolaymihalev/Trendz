@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Trendz.Infrastructure.Data.Configurations;
 using Trendz.Infrastructure.Data.Models;
 
 namespace Trendz.Infrastructure.Data
@@ -33,6 +34,8 @@ namespace Trendz.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new UserConfiguration());
+
             builder.Entity<Payment>()
                 .Property(p => p.Amount)
                 .HasPrecision(14, 2);
