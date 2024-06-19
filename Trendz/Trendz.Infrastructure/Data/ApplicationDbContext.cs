@@ -35,7 +35,8 @@ namespace Trendz.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new BrandConfiguration());
+            builder.ApplyConfiguration(new BrandConfiguration()); 
+            builder.ApplyConfiguration(new CategoryConfiguration());
 
             builder.Entity<Payment>()
                 .Property(p => p.Amount)
