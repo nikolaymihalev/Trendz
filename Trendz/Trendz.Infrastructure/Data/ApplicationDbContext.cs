@@ -39,14 +39,11 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CartConfiguration());
             builder.ApplyConfiguration(new WishlistConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
 
             builder.Entity<Payment>()
                 .Property(p => p.Amount)
-                .HasPrecision(14, 2);
-
-            builder.Entity<Product>()
-                .Property(p => p.Price)
-                .HasPrecision(14, 2);
+                .HasPrecision(14, 2);            
 
             builder.Entity<OrderItem>()
                 .Property(p => p.UnitPrice)
