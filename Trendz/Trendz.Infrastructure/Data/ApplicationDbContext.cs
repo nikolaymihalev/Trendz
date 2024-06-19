@@ -38,6 +38,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new BrandConfiguration()); 
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CartConfiguration());
+            builder.ApplyConfiguration(new WishlistConfiguration());
 
             builder.Entity<Payment>()
                 .Property(p => p.Amount)
