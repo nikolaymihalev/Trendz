@@ -47,10 +47,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new ProductSizeConfiguration());
             builder.ApplyConfiguration(new PaymentConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
-
-            builder.Entity<OrderItem>()
-                .Property(p => p.UnitPrice)
-                .HasPrecision(14, 2);            
+            builder.ApplyConfiguration(new OrderItemConfiguration());
 
             builder.Entity<Discount>()
                 .Property(p => p.DiscountPercentage)
