@@ -42,6 +42,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ProductImageConfiguration());
             builder.ApplyConfiguration(new ColorConfiguration());
+            builder.ApplyConfiguration(new SizeConfiguration());
 
             builder.Entity<Payment>()
                 .Property(p => p.Amount)
