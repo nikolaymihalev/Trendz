@@ -44,6 +44,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new ColorConfiguration());
             builder.ApplyConfiguration(new SizeConfiguration());
             builder.ApplyConfiguration(new ProductColorConfiguration());
+            builder.ApplyConfiguration(new ProductSizeConfiguration());
 
             builder.Entity<Payment>()
                 .Property(p => p.Amount)
@@ -59,15 +60,7 @@ namespace Trendz.Infrastructure.Data
 
             builder.Entity<Discount>()
                 .Property(p => p.DiscountPercentage)
-                .HasPrecision(14, 2);            
-
-            builder.Entity<ProductSize>()
-                .HasOne(x => x.Product)
-                .WithMany(x => x.ProductSizes)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<ProductSize>()
-              .HasKey(x => new { x.ProductId, x.SizeId });
+                .HasPrecision(14, 2);       
 
             base.OnModelCreating(builder);
         }
