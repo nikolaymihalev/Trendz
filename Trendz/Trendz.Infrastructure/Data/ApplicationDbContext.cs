@@ -48,10 +48,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new PaymentConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new OrderItemConfiguration());
-
-            builder.Entity<Discount>()
-                .Property(p => p.DiscountPercentage)
-                .HasPrecision(14, 2);       
+            builder.ApplyConfiguration(new DiscountConfiguration());
 
             base.OnModelCreating(builder);
         }
