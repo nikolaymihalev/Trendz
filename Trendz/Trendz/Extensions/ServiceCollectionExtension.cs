@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Trendz.Core.Contracts;
+using Trendz.Core.Services;
 using Trendz.Infrastructure.Common;
 using Trendz.Infrastructure.Data;
 
@@ -9,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services) 
         {
+            services.AddScoped<IBrandService, BrandService>();
+
             return services;
         }
 
