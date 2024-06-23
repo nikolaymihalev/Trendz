@@ -9,6 +9,11 @@ namespace Trendz.Core.Models.Brand
     public class BrandFormModel
     {
         /// <summary>
+        /// Brand identifier
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Brand name
         /// </summary>
         [Required(ErrorMessage = ErrorMessageConstants.RequireErrorMessage)]
