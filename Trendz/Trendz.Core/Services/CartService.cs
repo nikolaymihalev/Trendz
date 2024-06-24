@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Trendz.Core.Contracts;
-using Trendz.Core.Models.Brand;
 using Trendz.Core.Models.Cart;
 using Trendz.Infrastructure.Common;
 using Trendz.Infrastructure.Constants;
@@ -28,6 +27,27 @@ namespace Trendz.Core.Services
             try
             {
                 await repository.AddAsync<Cart>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+        }
+
+        public async Task AddItemAsync(CartItemModel model)
+        {
+            var entity = new CartItem()
+            {
+                CartId = model.CartId,
+                ProductId = model.ProductId,
+                Quantity = model.Quantity,
+                DateAdded = DateTime.Now,
+            };
+
+            try
+            {
+                await repository.AddAsync<CartItem>(entity);
                 await repository.SaveChangesAsync();
             }
             catch (Exception)
@@ -69,6 +89,14 @@ namespace Trendz.Core.Services
                 UserId = entity.UserId,
                 DateCreated = entity.DateCreated,
             };
+        }
+
+        public async Task RemoveItemAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<CartItem>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<CartItem>(id);
         }
     }
 }
