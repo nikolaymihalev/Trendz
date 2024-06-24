@@ -58,7 +58,6 @@ namespace Trendz.Core.Services
         public async Task<IEnumerable<BrandInfoModel>> GetAllBrandsAsync()
         {
             return await repository.AllReadonly<Brand>()
-                .AsNoTracking()
                 .Select(x => new BrandInfoModel()
                 {
                     Id = x.Id,

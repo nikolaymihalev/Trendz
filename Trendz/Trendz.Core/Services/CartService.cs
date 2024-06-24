@@ -47,7 +47,6 @@ namespace Trendz.Core.Services
         public async Task<IEnumerable<CartModel>> GetAllCartsAsync()
         {
             return await repository.AllReadonly<Cart>()
-                .AsNoTracking()
                 .Select(x => new CartModel()
                 {
                     Id = x.Id,
