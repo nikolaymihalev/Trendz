@@ -4,7 +4,7 @@ using Trendz.Infrastructure.Constants;
 namespace Trendz.Core.Models.Color
 {
     /// <summary>
-    /// Model for adding or editting Color
+    /// Model for adding or editing Color
     /// </summary>
     public class ColorFormModel
     {

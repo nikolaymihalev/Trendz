@@ -4,7 +4,7 @@ using Trendz.Infrastructure.Constants;
 namespace Trendz.Core.Models.Category
 {
     /// <summary>
-    /// Model for adding or editting Category
+    /// Model for adding or editing Category
     /// </summary>
     public class CategoryFormModel
     {
