@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IInventoryService, InventoryService>();
 
             return services;
         }
