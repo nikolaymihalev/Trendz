@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Trendz.Core.Contracts;
-using Trendz.Core.Models.Category;
 using Trendz.Core.Models.Payment;
 using Trendz.Infrastructure.Common;
 using Trendz.Infrastructure.Constants;
