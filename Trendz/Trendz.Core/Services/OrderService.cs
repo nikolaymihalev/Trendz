@@ -38,6 +38,27 @@ namespace Trendz.Core.Services
             }
         }
 
+        public async Task AddItemAsync(OrderItemModel model)
+        {
+            var entity = new OrderItem()
+            {
+                OrderId = model.OrderId,
+                ProductId = model.ProductId,
+                Quantity = model.Quantity,
+                UnitPrice = model.UnitPrice,
+            };
+
+            try
+            {
+                await repository.AddAsync<OrderItem>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await repository.GetByIdAsync<Order>(id);
@@ -92,6 +113,14 @@ namespace Trendz.Core.Services
                 Status = entity.Status,
                 TotalAmount = entity.TotalAmount,
             };
+        }
+
+        public async Task RemoveItemAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<OrderItem>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<OrderItem>(id);
         }
     }
 }

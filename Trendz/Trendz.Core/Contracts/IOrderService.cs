@@ -9,5 +9,7 @@ namespace Trendz.Core.Contracts
         Task EditAsync(OrderFormModel model);
         Task DeleteAsync(int id);
         Task<OrderInfoModel> GetByIdAsync(int id);
+        Task AddItemAsync(OrderItemModel model);
+        Task RemoveItemAsync(int id);
     }
 }
