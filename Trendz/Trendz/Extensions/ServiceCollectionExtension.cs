@@ -18,6 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
             return services;
         }
