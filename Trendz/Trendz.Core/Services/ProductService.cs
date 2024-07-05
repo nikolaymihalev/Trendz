@@ -59,6 +59,25 @@ namespace Trendz.Core.Services
             }
         }
 
+        public async Task AddImageAsync(ProductImageFormModel model)
+        {
+            var entity = new ProductImage()
+            {
+                ProductId = model.ProductId,
+                Image = model.Image
+            };
+
+            try
+            {
+                await repository.AddAsync<ProductImage>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await repository.GetByIdAsync<Product>(id);
@@ -83,6 +102,31 @@ namespace Trendz.Core.Services
 
                 await repository.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<ProductColorModel>> GetAllColorsForProductAsync(int id)
+        {
+            return await repository.AllReadonly<ProductColor>()
+                .Where(x=>x.ProductId==id)
+                .Select(x => new ProductColorModel()
+                {
+                    ProductId = x.ProductId,
+                    ColorId = x.ColorId
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductImageInfoModel>> GetAllImagesForProductAsync(int id)
+        {
+            return await repository.AllReadonly<ProductImage>()
+                .Where(x => x.ProductId == id)
+                .Select(x => new ProductImageInfoModel()
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    Image = Convert.ToBase64String(x.Image)
+                })
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<ProductInfoModel>> GetAllProductsAsync()
@@ -129,6 +173,14 @@ namespace Trendz.Core.Services
 
             if (entity != null)
                 repository.Delete<ProductColor>(entity);
+        }
+
+        public async Task RemoveImageAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<ProductImage>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<ProductImage>(id);
         }
     }
 }
