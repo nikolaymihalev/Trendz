@@ -40,6 +40,25 @@ namespace Trendz.Core.Services
             }
         }
 
+        public async Task AddColorAsync(ProductColorModel model)
+        {
+            var entity = new ProductColor()
+            {
+                ProductId = model.ProductId,
+                ColorId = model.ColorId
+            };
+
+            try
+            {
+                await repository.AddAsync<ProductColor>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await repository.GetByIdAsync<Product>(id);
@@ -101,6 +120,15 @@ namespace Trendz.Core.Services
                 StockQuantity = entity.StockQuantity,
                 DateAdded = entity.DateAdded,
             };
+        }
+
+        public async Task RemoveColorAsync(int productId, int colorId)
+        {
+            var entity = await repository.AllReadonly<ProductColor>()
+                .FirstOrDefaultAsync(x => x.ProductId == productId && x.ColorId == colorId);
+
+            if (entity != null)
+                repository.Delete<ProductColor>(entity);
         }
     }
 }
