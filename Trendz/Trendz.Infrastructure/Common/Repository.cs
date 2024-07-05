@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Trendz.Infrastructure.Data;
 
 namespace Trendz.Infrastructure.Common
@@ -40,6 +41,21 @@ namespace Trendz.Infrastructure.Common
         public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
             return await DbSet<T>().FindAsync(id);
+        }
+
+        /// <summary>
+        /// Delete entity from database
+        /// </summary>
+        public void Delete<T>(T entity) where T : class
+        {
+            EntityEntry entry = this.Context.Entry(entity);
+
+            if (entry.State == EntityState.Detached)
+            {
+                this.DbSet<T>().Attach(entity);
+            }
+
+            entry.State = EntityState.Deleted;
         }
 
         public async Task<int> SaveChangesAsync()
