@@ -15,5 +15,8 @@ namespace Trendz.Core.Contracts
         Task<IEnumerable<ProductImageInfoModel>> GetAllImagesForProductAsync(int id);
         Task AddImageAsync(ProductImageFormModel model);
         Task RemoveImageAsync(int id);
+        Task<IEnumerable<ProductSizeModel>> GetAllSizesForProductAsync(int id);
+        Task AddSizeAsync(ProductSizeModel model);
+        Task RemoveSizeAsync(int productId, int colorId);
     }
 }
