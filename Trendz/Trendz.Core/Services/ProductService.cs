@@ -78,6 +78,25 @@ namespace Trendz.Core.Services
             }
         }
 
+        public async Task AddSizeAsync(ProductSizeModel model)
+        {
+            var entity = new ProductSize()
+            {
+                ProductId = model.ProductId,
+                SizeId = model.SizeId
+            };
+
+            try
+            {
+                await repository.AddAsync<ProductSize>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await repository.GetByIdAsync<Product>(id);
@@ -146,6 +165,18 @@ namespace Trendz.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<ProductSizeModel>> GetAllSizesForProductAsync(int id)
+        {
+            return await repository.AllReadonly<ProductSize>()
+                .Where(x => x.ProductId == id)
+                .Select(x => new ProductSizeModel()
+                {
+                    ProductId = x.ProductId,
+                    SizeId = x.SizeId
+                })
+                .ToListAsync();
+        }
+
         public async Task<ProductInfoModel> GetByIdAsync(int id)
         {
             var entity = await repository.GetByIdAsync<Product>(id);
@@ -181,6 +212,15 @@ namespace Trendz.Core.Services
 
             if (entity != null)
                 await repository.DeleteAsync<ProductImage>(id);
+        }
+
+        public async Task RemoveSizeAsync(int productId, int sizeId)
+        {
+            var entity = await repository.AllReadonly<ProductSize>()
+                .FirstOrDefaultAsync(x => x.ProductId == productId && x.SizeId == sizeId);
+
+            if (entity != null)
+                repository.Delete<ProductSize>(entity);
         }
     }
 }
