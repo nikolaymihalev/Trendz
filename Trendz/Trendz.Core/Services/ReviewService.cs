@@ -1,38 +1,114 @@
-﻿using Trendz.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Trendz.Core.Contracts;
 using Trendz.Core.Models.Review;
+using Trendz.Infrastructure.Common;
+using Trendz.Infrastructure.Constants;
+using Trendz.Infrastructure.Data.Models;
 
 namespace Trendz.Core.Services
 {
     public class ReviewService : IReviewService
     {
-        public Task AddAsync(ReviewFormModel model)
+        private readonly IRepository repository;
+
+        public ReviewService(IRepository _repository)
         {
-            throw new NotImplementedException();
+            repository = _repository;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task AddAsync(ReviewFormModel model)
         {
-            throw new NotImplementedException();
+            var entity = new Review()
+            {
+                ProductId = model.ProductId,
+                UserId = model.UserId,
+                Rating = model.Rating,
+                Comment = model.Comment,
+                PublishDate = model.PublishDate
+            };
+
+            try
+            {
+                await repository.AddAsync<Review>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
         }
 
-        public Task EditAsync(ReviewFormModel model)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await repository.GetByIdAsync<Review>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<Review>(id);
         }
 
-        public Task<IEnumerable<ReviewInfoModel>> GetAllReviewsAsync()
+        public async Task EditAsync(ReviewFormModel model)
         {
-            throw new NotImplementedException();
+            var entity = await repository.GetByIdAsync<Review>(model.Id);
+
+            if (entity != null)
+            {
+                entity.ProductId = model.ProductId;
+                entity.UserId = model.UserId;
+                entity.Rating = model.Rating;
+                entity.Comment = model.Comment;
+                entity.PublishDate = model.PublishDate;
+
+                await repository.SaveChangesAsync();
+            }
         }
 
-        public Task<IEnumerable<ReviewInfoModel>> GetAllReviewsForProductAsync(int id)
+        public async Task<IEnumerable<ReviewInfoModel>> GetAllReviewsAsync()
         {
-            throw new NotImplementedException();
+            return await repository.AllReadonly<Review>()
+                .Select(x => new ReviewInfoModel()
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    UserId = x.UserId,
+                    Rating = x.Rating,
+                    Comment = x.Comment,
+                    PublishDate = x.PublishDate
+                })
+                .ToListAsync();
         }
 
-        public Task<ReviewInfoModel> GetByIdAsync(int id)
+        public async Task<IEnumerable<ReviewInfoModel>> GetAllReviewsForProductAsync(int id)
         {
-            throw new NotImplementedException();
+            return await repository.AllReadonly<Review>()
+                .Where(x => x.ProductId == id)
+                .Select(x => new ReviewInfoModel()
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    UserId = x.UserId,
+                    Rating = x.Rating,
+                    Comment = x.Comment,
+                    PublishDate = x.PublishDate
+                })
+                .ToListAsync();
+        }
+
+        public async Task<ReviewInfoModel> GetByIdAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<Review>(id);
+
+            if (entity == null)
+                throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
+
+            return new ReviewInfoModel()
+            {
+                Id = entity.Id,
+                ProductId = entity.ProductId,
+                UserId = entity.UserId,
+                Rating = entity.Rating,
+                Comment = entity.Comment,
+                PublishDate = entity.PublishDate
+            };
         }
     }
 }
