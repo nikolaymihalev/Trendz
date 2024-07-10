@@ -4,7 +4,7 @@ namespace Trendz.Core.Contracts
 {
     public interface ISizeService
     {
-        Task<IEnumerable<SizeInfoModel>> GetAllColorsAsync();
+        Task<IEnumerable<SizeInfoModel>> GetAllSizesAsync();
         Task AddAsync(SizeFormModel model);
         Task EditAsync(SizeFormModel model);
         Task DeleteAsync(int id);
