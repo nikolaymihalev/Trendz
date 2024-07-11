@@ -1,33 +1,82 @@
-﻿using Trendz.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Trendz.Core.Contracts;
 using Trendz.Core.Models.Size;
+using Trendz.Infrastructure.Common;
+using Trendz.Infrastructure.Constants;
+using Trendz.Infrastructure.Data.Models;
 
 namespace Trendz.Core.Services
 {
     public class SizeService : ISizeService
     {
-        public Task AddAsync(SizeFormModel model)
+        private readonly IRepository repository;
+
+        public SizeService(IRepository _repository)
         {
-            throw new NotImplementedException();
+            repository = _repository;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task AddAsync(SizeFormModel model)
         {
-            throw new NotImplementedException();
+            var entity = new Size()
+            {
+                Name = model.Name
+            };
+
+            try
+            {
+                await repository.AddAsync<Size>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
         }
 
-        public Task EditAsync(SizeFormModel model)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await repository.GetByIdAsync<Size>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<Size>(id);
         }
 
-        public Task<IEnumerable<SizeInfoModel>> GetAllSizesAsync()
+        public async Task EditAsync(SizeFormModel model)
         {
-            throw new NotImplementedException();
+            var entity = await repository.GetByIdAsync<Size>(model.Id);
+
+            if (entity != null)
+            {
+                entity.Name = model.Name;
+
+                await repository.SaveChangesAsync();
+            }
         }
 
-        public Task<SizeInfoModel> GetByIdAsync(int id)
+        public async Task<IEnumerable<SizeInfoModel>> GetAllSizesAsync()
         {
-            throw new NotImplementedException();
+            return await repository.AllReadonly<Size>()
+                .Select(x => new SizeInfoModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                })
+                .ToListAsync();
+        }
+
+        public async Task<SizeInfoModel> GetByIdAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<Size>(id);
+
+            if (entity == null)
+                throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
+
+            return new SizeInfoModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+            };
         }
     }
 }
