@@ -1,33 +1,89 @@
-﻿using Trendz.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Trendz.Core.Contracts;
 using Trendz.Core.Models.Wishlist;
+using Trendz.Infrastructure.Common;
+using Trendz.Infrastructure.Constants;
+using Trendz.Infrastructure.Data.Models;
 
 namespace Trendz.Core.Services
 {
     public class WishlistService : IWishlistService
     {
-        public Task AddAsync(WishlistModel model)
+        private readonly IRepository repository;
+
+        public WishlistService(IRepository _repository)
         {
-            throw new NotImplementedException();
+            repository = _repository;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task AddAsync(WishlistModel model)
         {
-            throw new NotImplementedException();
+            var entity = new Wishlist()
+            {
+                UserId = model.UserId,
+                DateCreated = DateTime.Now,
+            };
+
+            try
+            {
+                await repository.AddAsync<Wishlist>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
         }
 
-        public Task<IEnumerable<WishlistModel>> GetAllWishlistsAsync()
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await repository.GetByIdAsync<Wishlist>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<Wishlist>(id);
         }
 
-        public Task<WishlistModel> GetByIdAsync(int id)
+        public async Task<IEnumerable<WishlistModel>> GetAllWishlistsAsync()
         {
-            throw new NotImplementedException();
+            return await repository.AllReadonly<Wishlist>()
+                .Select(x => new WishlistModel()
+                {
+                    Id = x.Id,
+                    UserId = x.UserId,
+                    DateCreated = x.DateCreated
+                })
+                .ToListAsync();
         }
 
-        public Task<WishlistModel> GetByUserIdAsync(string userId)
+        public async Task<WishlistModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await repository.GetByIdAsync<Wishlist>(id);
+
+            if (entity == null)
+                throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
+
+            return new WishlistModel()
+            {
+                Id = entity.Id,
+                UserId= entity.UserId,
+                DateCreated = entity.DateCreated,
+            };
+        }
+
+        public async Task<WishlistModel> GetByUserIdAsync(string userId)
+        {
+            var entity = await repository.AllReadonly<Wishlist>()
+                .FirstOrDefaultAsync(x=>x.UserId==userId);
+
+            if (entity == null)
+                throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
+
+            return new WishlistModel()
+            {
+                Id = entity.Id,
+                UserId = entity.UserId,
+                DateCreated = entity.DateCreated,
+            };
         }
     }
 }
