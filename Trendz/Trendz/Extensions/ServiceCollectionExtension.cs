@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IShippingService, ShippingService>();
-            services.AddScoped<ISizeService, SizeService>();
+            services.AddScoped<IWishlistService, WishlistService>();
 
             return services;
         }
