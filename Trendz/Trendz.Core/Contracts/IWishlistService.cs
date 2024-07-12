@@ -9,5 +9,7 @@ namespace Trendz.Core.Contracts
         Task DeleteAsync(int id);
         Task<WishlistModel> GetByIdAsync(int id);
         Task<WishlistModel> GetByUserIdAsync(string userId);
+        Task AddItemAsync(WishlistItemModel model);
+        Task RemoveItemAsync(int id);
     }
 }
