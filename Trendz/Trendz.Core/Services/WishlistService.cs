@@ -35,6 +35,26 @@ namespace Trendz.Core.Services
             }
         }
 
+        public async Task AddItemAsync(WishlistItemModel model)
+        {
+            var entity = new WishlistItem()
+            {
+                ProductId = model.ProductId,
+                WishlistId = model.WishlistId,
+                DateAdded = DateTime.Now,
+            };
+
+            try
+            {
+                await repository.AddAsync<WishlistItem>(entity);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await repository.GetByIdAsync<Wishlist>(id);
@@ -84,6 +104,14 @@ namespace Trendz.Core.Services
                 UserId = entity.UserId,
                 DateCreated = entity.DateCreated,
             };
+        }
+
+        public async Task RemoveItemAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<WishlistItem>(id);
+
+            if (entity != null)
+                await repository.DeleteAsync<WishlistItem>(id);
         }
     }
 }
