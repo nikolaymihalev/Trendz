@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.home-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

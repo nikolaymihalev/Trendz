@@ -6,8 +6,11 @@
     <section class="home-nav">
         <a asp-controller="Home" asp-action="Index">TrendZ</a>
         <div class="nav-search">
-            <textarea>Bikini</textarea>
-            <a>Search</a>
+            <form>
+                <label for="search">Bikini</label>
+                <input type="text" id="search" name="search" />
+                <button type="submit">Search</button>
+            </form>
         </div>
         <div class="nav-links">
             <ul>
