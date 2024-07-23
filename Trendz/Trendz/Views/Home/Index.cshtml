@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject ICategoryService categoryService
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -22,5 +24,26 @@
                 <li><a asp-controller="" asp-action="">Favorites</a></li>
             </ul>
         </div>
+    </section>
+    <section>
+        @{
+            var categories = await categoryService.GetAllCategoriesAsync();
+
+            <ul>
+                <li>
+                    <ul>
+                        Categories
+                    </ul>
+                </li>
+                @{
+                    foreach (var item in categories)
+                    {
+                        <li>
+                            <a>@item.Name</a>
+                        </li>
+                    }
+                }
+            </ul>
+        }
     </section>
 </header>
