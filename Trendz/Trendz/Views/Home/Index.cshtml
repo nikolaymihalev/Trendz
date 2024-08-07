@@ -25,21 +25,16 @@
             </ul>
         </div>
     </section>
-    <section>
+    <section class="home-categories">
         @{
             var categories = await categoryService.GetAllCategoriesAsync();
 
-            <ul>
-                <li>
-                    <ul>
-                        Categories
-                    </ul>
-                </li>
+            <ul>                
                 @{
                     foreach (var item in categories)
                     {
                         <li>
-                            <a>@item.Name</a>
+                            <a asp-action="" asp-controller="">@item.Name</a>
                         </li>
                     }
                 }
