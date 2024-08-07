@@ -41,27 +41,73 @@
             </ul>
         }
     </section>
-
-    <script>
-        function changeNavSearchTitle() {
-            const titleEl = document.querySelector(".nav-search form label");
-            const titlesExamples = ["T-shirt", "Jeans", "Hoodie", "Dress", "Skirt", "Blouse", "Shorts", "Sweater", "Jacket", "Coat", "Tank top", "Polo shirt", "Cardigan", "Leggings", "Sweatpants", "Jumpsuit", "Romper", "Suit", "Blazer", "Vest", "Scarf", "Gloves", "Socks", "Underwear", "Bra", "Swimwear", "Bikini", "Trunks", "Pajamas", "Nightgown", "Camisole", "Corset", "Gown", "Turtleneck", "Crop top", "Overalls", "Tracksuit", "Raincoat", "Poncho", "Shawl", "Kimono", "Tunic", "Peacoat", "Windbreaker", "Henley shirt", "Rugby shirt", "Button-down shirt", "Graphic tee", "Denim jacket", "Leather jacket", "Bomber jacket", "Parka", "Maxi dress", "Midi dress", "Mini dress", "Sweatshirt", "Chinos", "Khakis", "Dress pants", "Capris", "Tights", "Overcoat", "Lingerie", "Slip dress", "Blouson", "Coveralls", "Bodysuit", "Shrug", "Tuxedo", "Culottes", "Sundress"];
-
-            function getRandomNumber(max) {
-                return Math.floor(Math.random() * max);
-            }
-
-            function changeTitle() { 
-                let index = getRandomNumber(titlesExamples.length - 1)
-                titleEl.textContent = titlesExamples[index];
-            }
-
-            setInterval(
-                function () { 
-                    changeTitle()
-                } ,
-                3000);
-        }
-        changeNavSearchTitle();
-    </script>
+    <section>
+        <ul>
+            <li>
+                <a asp-action="" asp-controller="">Women</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Curve</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Kids</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Men</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Dresses</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Tops</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Beachwear</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Home & Living</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Beauty & Health</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Underwear</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Sports</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Shoes & Bags</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Accessories</a>
+            </li>
+            <li>
+                <a asp-action="" asp-controller="">Electornics</a>
+            </li>
+        </ul>
+    </section>    
 </header>
+
+<script>
+    function changeNavSearchTitle() {
+        const titleEl = document.querySelector(".nav-search form label");
+        const titlesExamples = ["T-shirt", "Jeans", "Hoodie", "Dress", "Skirt", "Blouse", "Shorts", "Sweater", "Jacket", "Coat", "Tank top", "Polo shirt", "Cardigan", "Leggings", "Sweatpants", "Jumpsuit", "Romper", "Suit", "Blazer", "Vest", "Scarf", "Gloves", "Socks", "Underwear", "Bra", "Swimwear", "Bikini", "Trunks", "Pajamas", "Nightgown", "Camisole", "Corset", "Gown", "Turtleneck", "Crop top", "Overalls", "Tracksuit", "Raincoat", "Poncho", "Shawl", "Kimono", "Tunic", "Peacoat", "Windbreaker", "Henley shirt", "Rugby shirt", "Button-down shirt", "Graphic tee", "Denim jacket", "Leather jacket", "Bomber jacket", "Parka", "Maxi dress", "Midi dress", "Mini dress", "Sweatshirt", "Chinos", "Khakis", "Dress pants", "Capris", "Tights", "Overcoat", "Lingerie", "Slip dress", "Blouson", "Coveralls", "Bodysuit", "Shrug", "Tuxedo", "Culottes", "Sundress"];
+
+        function getRandomNumber(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function changeTitle() {
+            let index = getRandomNumber(titlesExamples.length - 1)
+            titleEl.textContent = titlesExamples[index];
+        }
+
+        setInterval(
+            function () {
+                changeTitle()
+            },
+            3000);
+    }
+    changeNavSearchTitle();
+</script>
