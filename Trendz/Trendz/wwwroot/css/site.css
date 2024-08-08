@@ -68,6 +68,7 @@ body {
         position:absolute;
         top: 0.4em;
         left: 0.5em;
+        cursor: text;
     }
 
     .nav-search form input {

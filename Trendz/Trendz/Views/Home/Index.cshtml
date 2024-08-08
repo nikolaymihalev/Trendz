@@ -1,4 +1,5 @@
 ﻿@inject ICategoryService categoryService
+@inject IDiscountService discountService
 
 @{
     ViewData["Title"] = "Home Page";
@@ -39,6 +40,24 @@
                     }
                 }
             </ul>
+        }
+    </section>
+    <section class="home-offers">
+        @{
+            var coupons = await discountService.GetNewestCouponsAsync(3);
+            if (coupons.Any())
+            {
+                <ul>
+                    @{
+                        foreach (var item in coupons)
+                        {
+                            <li>
+                                <a asp-action="@item.Percentage" asp-controller=""><img src="data:image/png;base64,@item.Image" /></a>
+                            </li>
+                        }
+                    }
+                </ul>
+            }            
         }
     </section>
     <section class="top-categories">
