@@ -14,6 +14,7 @@ namespace Trendz.Infrastructure.Data
 
         public DbSet<Brand> Brands { get; set; } = null!;
         public DbSet<Cart> Carts { get; set; } = null!;
+        public DbSet<Coupon> Coupons { get; set; } = null!;
         public DbSet<CartItem> CartItems { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Discount> Discounts { get; set; } = null!;
@@ -38,6 +39,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new BrandConfiguration()); 
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CartConfiguration());
+            builder.ApplyConfiguration(new CouponConfiguration());
             builder.ApplyConfiguration(new WishlistConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ProductImageConfiguration());
