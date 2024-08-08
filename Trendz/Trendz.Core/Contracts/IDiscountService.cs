@@ -4,7 +4,7 @@ namespace Trendz.Core.Contracts
 {
     public interface IDiscountService
     {
-        Task<IEnumerable<DiscountInfoModel>> GetAllColorsAsync();
+        Task<IEnumerable<DiscountInfoModel>> GetAllDiscountsAsync();
         Task AddAsync(DiscountFormModel model);
         Task DeleteAsync(int id);
         Task<DiscountInfoModel> GetByIdAsync(int id);
