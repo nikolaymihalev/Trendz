@@ -45,7 +45,19 @@ namespace Trendz.Core.Services
                 await repository.DeleteAsync<Discount>(id);
         }
 
-        public async Task<IEnumerable<DiscountInfoModel>> GetAllColorsAsync()
+        public async Task<IEnumerable<CouponModel>> GetAllCouponsAsync()
+        {
+            return await repository.AllReadonly<Coupon>()
+                .Select(x => new CouponModel()
+                {
+                    Id = x.Id,
+                    Percentage = x.Percentage,
+                    Image = Convert.ToBase64String(x.Image),
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<DiscountInfoModel>> GetAllDiscountsAsync()
         {
             return await repository.AllReadonly<Discount>()
                 .Select(x => new DiscountInfoModel()
@@ -76,6 +88,35 @@ namespace Trendz.Core.Services
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
             };
+        }
+
+        public async Task<IEnumerable<DiscountInfoModel>> GetDiscountsPerPercentageAsync(decimal percentage)
+        {
+            return await repository.AllReadonly<Discount>()
+                .Where(x=>x.DiscountPercentage==percentage)
+                .Select(x => new DiscountInfoModel()
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    DiscountPercentage = x.DiscountPercentage,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<CouponModel>> GetNewestCouponsAsync(int count)
+        {
+            return await repository.AllReadonly<Coupon>()
+                .OrderByDescending(x=>x.Id)
+                .Take(count)
+                .Select(x => new CouponModel()
+                {
+                    Id = x.Id,
+                    Percentage = x.Percentage,
+                    Image = Convert.ToBase64String(x.Image),
+                })                
+                .ToListAsync();
         }
     }
 }
