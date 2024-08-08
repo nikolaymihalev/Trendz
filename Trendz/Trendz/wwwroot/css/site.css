@@ -110,5 +110,29 @@ body {
 .home-categories a {
     color: #000;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.top-categories ul li ul {
+    display: flex;
+    gap: 3em;
+    margin-top: 2em;
+}
+
+
+.top-categories li {
+    list-style: none outside;
+    flex: 1 1 50%;    
+}
+
+.top-categories ul li ul li {
+    text-align: center;
+}
+
+.top-categories a {
+    color: #000;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
