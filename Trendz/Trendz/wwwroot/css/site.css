@@ -84,10 +84,10 @@ body {
         width: 50px;
     }
 
-.home-discount img {
-    position:absolute;
-    left:0;
-    top:0;
+.home-new-coupon img {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     max-height: 200px;
 }
