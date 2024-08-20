@@ -141,3 +141,19 @@ body {
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+
+.home-offers {
+    margin: 1.5em 0;
+    padding: 0 20%;
+}
+
+    .home-offers a {
+        width: 100%;
+    }
+
+    .home-offers img {
+        width: 800px;
+        height: 400px;
+        border-radius: 0.5em;
+        margin: 0 auto;
+    }
