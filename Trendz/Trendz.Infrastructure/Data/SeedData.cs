@@ -18,6 +18,7 @@ namespace Trendz.Infrastructure.Data
             SeedSizes();
             SeedProductColors();
             SeedProductSizes();
+            SeedCoupons();
         }
 
         public IdentityUser Guest { get; set; } = null!;
@@ -38,6 +39,7 @@ namespace Trendz.Infrastructure.Data
         public ProductColor ProductColorWhite { get; set; } = null!;
         public ProductSize ProductSizeM { get; set; } = null!;
         public ProductSize ProductSizeS { get; set; } = null!;
+        public Coupon Coupon { get; set; } = null!;
 
         private void SeedUsers() 
         {
@@ -202,6 +204,16 @@ namespace Trendz.Infrastructure.Data
             {
                 ProductId = 1,
                 SizeId = 2
+            };
+        }
+
+        private void SeedCoupons() 
+        {
+            Coupon = new Coupon()
+            {
+                Id = 1,
+                Percentage = 50m,
+                Image = File.ReadAllBytes(Path.Combine(@"Images", "coupon.png"))
             };
         }
     }
