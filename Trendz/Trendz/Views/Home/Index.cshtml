@@ -47,16 +47,25 @@
             var coupons = await discountService.GetNewestCouponsAsync(3);
             if (coupons.Any())
             {
+                <i class="fa-solid fa-arrow-left" style="color: #000;"></i>
                 <ul>
                     @{
+                        var array = new List<CouponModel>();
+
                         foreach (var item in coupons)
                         {
-                            <li>
-                                <a asp-action="@item.Percentage" asp-controller=""><img src="data:image/png;base64,@item.Image" /></a>
-                            </li>
+                            array.Add(item);
                         }
-                    }
+
+                        for (int i = 0; i < array.Count; i++)
+                        {                            
+                            <li>
+                                <a data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                            </li>
+                        }                        
+                    }                    
                 </ul>
+                <i class="fa-solid fa-arrow-right" style="color: #000;"></i>
             }      
         }
     </section>
