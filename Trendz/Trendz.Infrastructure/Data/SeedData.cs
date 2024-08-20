@@ -40,6 +40,7 @@ namespace Trendz.Infrastructure.Data
         public ProductSize ProductSizeM { get; set; } = null!;
         public ProductSize ProductSizeS { get; set; } = null!;
         public Coupon Coupon { get; set; } = null!;
+        public Coupon Coupon20 { get; set; } = null!;
 
         private void SeedUsers() 
         {

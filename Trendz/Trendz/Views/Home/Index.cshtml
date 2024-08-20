@@ -30,16 +30,16 @@
         @{
             var categories = await categoryService.GetAllCategoriesAsync();
 
-            <ul>                
-                @{
-                    foreach (var item in categories)
-                    {
-                        <li>
-                            <a asp-action="" asp-controller="">@item.Name</a>
-                        </li>
-                    }
-                }
-            </ul>
+                                    <ul>                
+                                        @{
+                        foreach (var item in categories)
+                        {
+                                                                    <li>
+                                                                        <a asp-action="" asp-controller="">@item.Name</a>
+                                                                    </li>
+                        }
+                                        }
+                                    </ul>
         }
     </section>
     <section class="home-offers">
@@ -47,9 +47,9 @@
             var coupons = await discountService.GetNewestCouponsAsync(3);
             if (coupons.Any())
             {
-                <i class="fa-solid fa-arrow-left" style="color: #000;"></i>
-                <ul>
-                    @{
+                                    <i id="coupon-left-arrow" class="fa-solid fa-arrow-left" style="color: #000;"></i>
+                                    <ul>
+                                    @{
                         var array = new List<CouponModel>();
 
                         foreach (var item in coupons)
@@ -58,14 +58,24 @@
                         }
 
                         for (int i = 0; i < array.Count; i++)
-                        {                            
-                            <li>
-                                <a data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
-                            </li>
+                        {
+                            if (i == 0)
+                            {
+                                                                <li>
+                                                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                                                                </li>
+                            }
+                            else
+                            {
+                                                                <li>
+                                                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                                                                </li>
+                                
+                            }
                         }                        
-                    }                    
-                </ul>
-                <i class="fa-solid fa-arrow-right" style="color: #000;"></i>
+                                        }                    
+                                    </ul>
+                                    <i id="coupon-right-arrow" class="fa-solid fa-arrow-right" style="color: #000;"></i>
             }      
         }
     </section>
@@ -168,6 +178,58 @@
 </header>
 
 <script>
+    function setCouponSectionElements() { 
+        const leftArrow = document.getElementById('coupon-left-arrow');
+        const rightArrow = document.getElementById('coupon-right-arrow');
+        const couponsListItems = document.querySelectorAll(".home-offers ul li");
+
+        let currentCoupon = undefined;
+        let currentIndex = 0;
+
+        couponsListItems.forEach((item) => {
+            const firstChild = item.firstElementChild;
+            if (firstChild.classList.contains("coupon-enabled")) {
+                currentCoupon = firstChild;
+                currentIndex = Number(firstChild.getAttribute("data-coupon-id").split('-')[1]);
+            }
+        });
+
+        rightArrow.addEventListener('click', () => {
+            currentIndex++;
+
+            if (couponsListItems.length <= currentIndex) {
+                currentIndex = 0;
+            }
+            changeCurrentCoupon(currentIndex);            
+        })
+
+        leftArrow.addEventListener('click', () => {
+            currentIndex--;
+
+            if (currentIndex < 0) {
+                currentIndex = couponsListItems.length - 1;
+            }
+            changeCurrentCoupon(currentIndex);
+        })
+
+        function changeCurrentCoupon(index) {
+            currentCoupon.classList.remove("coupon-enabled");
+            currentCoupon.classList.add("coupon-disabled");
+
+            let newCoupon = undefined;
+            let attrName = `coupon-${index}`;
+
+            couponsListItems.forEach((item) => {
+                const firstChild = item.firstElementChild;
+                if (firstChild.getAttribute("data-coupon-id") === attrName) {
+                    currentCoupon = firstChild;
+                    firstChild.classList.remove("coupon-disabled");
+                    firstChild.classList.add("coupon-enabled");
+                }
+            });
+        }
+    }
+
     function changeNavSearchTitle() {
         const titleEl = document.querySelector(".nav-search form label");
         const titlesExamples = ["T-shirt", "Jeans", "Hoodie", "Dress", "Skirt", "Blouse", "Shorts", "Sweater", "Jacket", "Coat", "Tank top", "Polo shirt", "Cardigan", "Leggings", "Sweatpants", "Jumpsuit", "Romper", "Suit", "Blazer", "Vest", "Scarf", "Gloves", "Socks", "Underwear", "Bra", "Swimwear", "Bikini", "Trunks", "Pajamas", "Nightgown", "Camisole", "Corset", "Gown", "Turtleneck", "Crop top", "Overalls", "Tracksuit", "Raincoat", "Poncho", "Shawl", "Kimono", "Tunic", "Peacoat", "Windbreaker", "Henley shirt", "Rugby shirt", "Button-down shirt", "Graphic tee", "Denim jacket", "Leather jacket", "Bomber jacket", "Parka", "Maxi dress", "Midi dress", "Mini dress", "Sweatshirt", "Chinos", "Khakis", "Dress pants", "Capris", "Tights", "Overcoat", "Lingerie", "Slip dress", "Blouson", "Coveralls", "Bodysuit", "Shrug", "Tuxedo", "Culottes", "Sundress"];
@@ -187,5 +249,8 @@
             },
             3000);
     }
+
+
     changeNavSearchTitle();
+    setCouponSectionElements();
 </script>

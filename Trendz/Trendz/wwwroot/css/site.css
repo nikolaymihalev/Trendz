@@ -166,8 +166,20 @@ body {
         width: 100%;
     }
 
+    .home-offers i {
+        cursor: pointer;
+    }
+
     .home-offers img {
         width: 800px;
         height: 400px;
         border-radius: 0.5em;
     }
+
+.coupon-enabled {
+    display: block;
+}
+
+.coupon-disabled {
+    display: none;
+}
