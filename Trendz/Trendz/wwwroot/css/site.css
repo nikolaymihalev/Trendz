@@ -143,9 +143,24 @@ body {
 }
 
 .home-offers {
-    margin: 1.5em 0;
-    padding: 0 20%;
+    margin: 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+    .home-offers i {
+        margin: 0 3em;
+        font-size: 1.5rem;
+    }
+
+    .home-offers ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .home-offers li {
+        list-style: none outside;
+    }
 
     .home-offers a {
         width: 100%;
@@ -155,5 +170,4 @@ body {
         width: 800px;
         height: 400px;
         border-radius: 0.5em;
-        margin: 0 auto;
     }
