@@ -30,16 +30,16 @@
         @{
             var categories = await categoryService.GetAllCategoriesAsync();
 
-                                    <ul>                
-                                        @{
+                                            <ul>                
+                                                @{
                         foreach (var item in categories)
                         {
-                                                                    <li>
-                                                                        <a asp-action="" asp-controller="">@item.Name</a>
-                                                                    </li>
+                                                                                    <li>
+                                                                                        <a asp-action="" asp-controller="">@item.Name</a>
+                                                                                    </li>
                         }
-                                        }
-                                    </ul>
+                                                }
+                                            </ul>
         }
     </section>
     <section class="home-offers">
@@ -47,9 +47,9 @@
             var coupons = await discountService.GetNewestCouponsAsync(3);
             if (coupons.Any())
             {
-                                    <i id="coupon-left-arrow" class="fa-solid fa-arrow-left" style="color: #000;"></i>
-                                    <ul>
-                                    @{
+                                            <i id="coupon-left-arrow" class="fa-solid fa-arrow-left" style="color: #000;"></i>
+                                            <ul>
+                                            @{
                         var array = new List<CouponModel>();
 
                         foreach (var item in coupons)
@@ -61,21 +61,21 @@
                         {
                             if (i == 0)
                             {
-                                                                <li>
-                                                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
-                                                                </li>
+                                                                                <li>
+                                                                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                                                                                </li>
                             }
                             else
                             {
-                                                                <li>
-                                                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
-                                                                </li>
+                                                                                <li>
+                                                                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                                                                                </li>
                                 
                             }
                         }                        
-                                        }                    
-                                    </ul>
-                                    <i id="coupon-right-arrow" class="fa-solid fa-arrow-right" style="color: #000;"></i>
+                                                }                    
+                                            </ul>
+                                            <i id="coupon-right-arrow" class="fa-solid fa-arrow-right" style="color: #000;"></i>
             }      
         }
     </section>
@@ -194,30 +194,30 @@
             }
         });
 
-        rightArrow.addEventListener('click', () => {
-            currentIndex++;
+        rightArrow.addEventListener('click', () => changeCurrentCoupon("plus"))
 
-            if (couponsListItems.length <= currentIndex) {
-                currentIndex = 0;
-            }
-            changeCurrentCoupon(currentIndex);            
-        })
+        leftArrow.addEventListener('click', () => changeCurrentCoupon("minus"))
 
-        leftArrow.addEventListener('click', () => {
-            currentIndex--;
+        function changeCurrentCoupon(operation) {
 
-            if (currentIndex < 0) {
-                currentIndex = couponsListItems.length - 1;
-            }
-            changeCurrentCoupon(currentIndex);
-        })
+            if (operation === "minus") {
+                currentIndex--;
+                if (currentIndex < 0) {
+                    currentIndex = couponsListItems.length - 1;
+                }
+            } else if (operation === "plus") {
+                currentIndex++;
 
-        function changeCurrentCoupon(index) {
+                if (couponsListItems.length <= currentIndex) {
+                    currentIndex = 0;
+                }
+            }         
+
             currentCoupon.classList.remove("coupon-enabled");
             currentCoupon.classList.add("coupon-disabled");
 
             let newCoupon = undefined;
-            let attrName = `coupon-${index}`;
+            let attrName = `coupon-${currentIndex}`;
 
             couponsListItems.forEach((item) => {
                 const firstChild = item.firstElementChild;
@@ -228,6 +228,12 @@
                 }
             });
         }
+
+        setInterval(
+            function () {
+                changeCurrentCoupon("plus")
+            },
+            5000);
     }
 
     function changeNavSearchTitle() {
