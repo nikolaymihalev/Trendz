@@ -216,6 +216,13 @@ namespace Trendz.Infrastructure.Data
                 Percentage = 50m,
                 Image = File.ReadAllBytes(Path.Combine(@"Images", "coupon.png"))
             };
+
+            Coupon20 = new Coupon()
+            {
+                Id = 2,
+                Percentage = 20m,
+                Image = File.ReadAllBytes(Path.Combine(@"Images", "coupon-20.png"))
+            };
         }
     }
 }

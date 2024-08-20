@@ -13,7 +13,7 @@ namespace Trendz.Infrastructure.Data.Configurations
 
             var data = new SeedData();
 
-            builder.HasData(data.Coupon);
+            builder.HasData(new Coupon[] { data.Coupon, data.Coupon20 });
         }
     }
 }
