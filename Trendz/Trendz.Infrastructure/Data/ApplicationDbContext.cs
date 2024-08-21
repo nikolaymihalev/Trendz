@@ -23,6 +23,7 @@ namespace Trendz.Infrastructure.Data
         public DbSet<OrderItem> OrderItems { get; set; } = null!;
         public DbSet<Payment> Payments { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
+        public DbSet<Rating> Ratings { get; set; } = null!;
         public DbSet<Review> Reviews { get; set; } = null!;
         public DbSet<Shipping> Shippings { get; set; } = null!;
         public DbSet<Wishlist> Wishlists { get; set; } = null!;
