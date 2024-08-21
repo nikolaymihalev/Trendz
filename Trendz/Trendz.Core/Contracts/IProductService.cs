@@ -5,6 +5,7 @@ namespace Trendz.Core.Contracts
     public interface IProductService
     {
         Task<IEnumerable<ProductInfoModel>> GetAllProductsAsync();
+        Task<IEnumerable<ProductInfoModel>> GetProductsWithHighestRatingAsync(int count);
         Task AddAsync(ProductFormModel model);
         Task EditAsync(ProductFormModel model);
         Task DeleteAsync(int id);
