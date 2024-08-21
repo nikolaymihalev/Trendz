@@ -1,4 +1,6 @@
-﻿namespace Trendz.Core.Contracts
+﻿using Trendz.Core.Models.Rating;
+
+namespace Trendz.Core.Contracts
 {
     public interface IRatingService
     {
