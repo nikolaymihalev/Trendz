@@ -197,6 +197,25 @@ namespace Trendz.Core.Services
             };
         }
 
+        public async Task<IEnumerable<ProductInfoModel>> GetProductsWithHighestRatingAsync(int count)
+        {
+            return await repository.AllReadonly<Rating>()
+                .OrderByDescending(x => x.Value)
+                .Select(x => new ProductInfoModel()
+                {
+                    Id = x.Product.Id,
+                    Name = x.Product.Name,
+                    Description = x.Product.Description,
+                    Price = x.Product.Price,
+                    CategoryId = x.Product.CategoryId,
+                    BrandId = x.Product.BrandId,
+                    StockQuantity = x.Product.StockQuantity,
+                    DateAdded = x.Product.DateAdded,
+                })
+                .Take(count)
+                .ToListAsync();
+        }
+
         public async Task RemoveColorAsync(int productId, int colorId)
         {
             var entity = await repository.AllReadonly<ProductColor>()
