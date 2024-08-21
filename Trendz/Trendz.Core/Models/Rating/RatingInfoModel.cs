@@ -24,6 +24,11 @@ namespace Trendz.Core.Models.Rating
         public string UserId { get; set; } = string.Empty;
 
         /// <summary>
+        /// User username
+        /// </summary>
+        public string UserUsername { get; set; }
+
+        /// <summary>
         /// Product identifier
         /// </summary>
         public int ProductId { get; set; }
