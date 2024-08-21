@@ -30,16 +30,16 @@
         @{
             var categories = await categoryService.GetAllCategoriesAsync();
 
-                                            <ul>                
-                                                @{
-                        foreach (var item in categories)
-                        {
-                                                                                    <li>
-                                                                                        <a asp-action="" asp-controller="">@item.Name</a>
-                                                                                    </li>
-                        }
-                                                }
-                                            </ul>
+            <ul>                
+                @{
+                    foreach (var item in categories)
+                    {
+                        <li>
+                            <a asp-action="" asp-controller="">@item.Name</a>
+                        </li>
+                    }
+                }
+            </ul>
         }
     </section>
     <section class="home-offers">
@@ -47,35 +47,35 @@
             var coupons = await discountService.GetNewestCouponsAsync(3);
             if (coupons.Any())
             {
-                                            <i id="coupon-left-arrow" class="fa-solid fa-arrow-left" style="color: #000;"></i>
-                                            <ul>
-                                            @{
-                        var array = new List<CouponModel>();
+                <i id="coupon-left-arrow" class="fa-solid fa-arrow-left" style="color: #000;"></i>
+                <ul>
+                @{
+                    var array = new List<CouponModel>();
 
-                        foreach (var item in coupons)
+                    foreach (var item in coupons)
+                    {
+                        array.Add(item);
+                    }
+
+                    for (int i = 0; i < array.Count; i++)
+                    {
+                        if (i == 0)
                         {
-                            array.Add(item);
+                            <li>
+                                <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                            </li>
                         }
-
-                        for (int i = 0; i < array.Count; i++)
+                        else
                         {
-                            if (i == 0)
-                            {
-                                                                                <li>
-                                                                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
-                                                                                </li>
-                            }
-                            else
-                            {
-                                                                                <li>
-                                                                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
-                                                                                </li>
+                            <li>
+                                <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                            </li>
                                 
-                            }
-                        }                        
-                                                }                    
-                                            </ul>
-                                            <i id="coupon-right-arrow" class="fa-solid fa-arrow-right" style="color: #000;"></i>
+                        }
+                    }                        
+                }                    
+                </ul>
+                <i id="coupon-right-arrow" class="fa-solid fa-arrow-right" style="color: #000;"></i>
             }      
         }
     </section>

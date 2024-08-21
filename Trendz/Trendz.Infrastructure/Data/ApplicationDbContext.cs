@@ -52,6 +52,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new OrderItemConfiguration());
             builder.ApplyConfiguration(new DiscountConfiguration());
+            builder.ApplyConfiguration(new RatingConfiguration());
 
             base.OnModelCreating(builder);
         }
