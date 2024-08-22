@@ -178,7 +178,7 @@
     </section>    
     <section class="home-recommended">
         @{
-            var recommProducts = await productService.GetProductsWithHighestRatingAsync(50);
+            var recommProducts = await productService.GetProductsWithHighestRatingAsync(16);
 
             if (recommProducts.Any())
             {
@@ -192,9 +192,9 @@
                             </li>
                         }
                     }
-                </ul>               
+                </ul>
 
-                <a>More</a>
+                <a asp-action="" asp-controller="" class="show-more-btn">Show More</a>
             }
         }
     </section>
