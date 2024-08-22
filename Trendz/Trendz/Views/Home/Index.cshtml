@@ -183,15 +183,16 @@
             if (recommProducts.Any())
             {
                 <h3>Reccommended</h3>
-
-                foreach (var item in recommProducts)
-                {
-                    var productImages = await productService.GetAllImagesForProductAsync(item.Id);
-                    var firstImage = productImages.FirstOrDefault();
-                    <img src="data:image/png;base64,@firstImage.Image" />
-                    <p>@item.Name</p>
-                    <h5>$@item.Price</h5>
-                }
+                <ul>
+                    @{
+                        foreach (var item in recommProducts)
+                        {
+                            <li>
+                                <partial name="_ProductPartial" model="item" />
+                            </li>
+                        }
+                    }
+                </ul>               
 
                 <a>More</a>
             }

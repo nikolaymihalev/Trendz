@@ -1,0 +1,10 @@
+﻿@model ProductInfoModel
+@inject IProductService productService
+
+@{
+    var productImages = await productService.GetAllImagesForProductAsync(Model.Id);
+    var firstImage = productImages.FirstOrDefault();
+    <img src="data:image/png;base64,@firstImage.Image" />
+    <p>@Model.Name</p>
+    <h5>$@Model.Price</h5>
+}
