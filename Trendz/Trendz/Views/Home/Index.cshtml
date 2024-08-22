@@ -1,5 +1,6 @@
 ﻿@inject ICategoryService categoryService
 @inject IDiscountService discountService
+@inject IProductService productService
 
 @{
     ViewData["Title"] = "Home Page";
@@ -175,6 +176,23 @@
             </li>
         </ul>
     </section>    
+    <section class="home-recommended">
+        @{
+            var recommProducts = await productService.GetProductsWithHighestRatingAsync(15);
+
+            if (recommProducts.Any())
+            {
+                <h3>Reccommended</h3>
+
+                foreach (var item in recommProducts)
+                {
+                    
+                }
+
+                <a>More</a>
+            }
+        }
+    </section>
 </header>
 
 <script>
