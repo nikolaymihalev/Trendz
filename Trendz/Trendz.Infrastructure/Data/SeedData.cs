@@ -20,6 +20,7 @@ namespace Trendz.Infrastructure.Data
             SeedProductSizes();
             SeedCoupons();
             SeedRatings();
+            SeedDiscounts();
         }
 
         public IdentityUser Guest { get; set; } = null!;
@@ -43,6 +44,7 @@ namespace Trendz.Infrastructure.Data
         public Coupon Coupon { get; set; } = null!;
         public Coupon Coupon20 { get; set; } = null!;
         public Rating FiveStar { get; set; } = null!;
+        public Discount Discount20 { get; set; } = null!;
 
         private void SeedUsers() 
         {
@@ -235,6 +237,18 @@ namespace Trendz.Infrastructure.Data
                 UserId = Guest.Id,
                 ProductId = BlackTshirt.Id,
                 Value = 5.0
+            };
+        }
+
+        private void SeedDiscounts()
+        {
+            Discount20 = new Discount()
+            {
+                Id = 1,
+                ProductId = BlackTshirt.Id,
+                DiscountPercentage = 20m,
+                StartDate = DateTime.Parse("12 August 2024"),
+                EndDate = DateTime.Parse("23 December 2032")
             };
         }
     }

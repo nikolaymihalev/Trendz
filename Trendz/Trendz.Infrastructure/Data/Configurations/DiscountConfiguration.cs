@@ -10,6 +10,10 @@ namespace Trendz.Infrastructure.Data.Configurations
         {
             builder.Property(p => p.DiscountPercentage)
                 .HasPrecision(14, 2);
+
+            var data = new SeedData();
+
+            builder.HasData(data.Discount20);
         }
     }
 }
