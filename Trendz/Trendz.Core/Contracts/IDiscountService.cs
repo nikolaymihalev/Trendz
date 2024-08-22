@@ -11,5 +11,6 @@ namespace Trendz.Core.Contracts
         Task AddAsync(DiscountFormModel model);
         Task DeleteAsync(int id);
         Task<DiscountInfoModel> GetByIdAsync(int id);
+        Task<DiscountInfoModel?> GetProductDiscountAsync(int productId);
     }
 }

@@ -118,5 +118,19 @@ namespace Trendz.Core.Services
                 })                
                 .ToListAsync();
         }
+
+        public async Task<DiscountInfoModel?> GetProductDiscountAsync(int productId)
+        {
+            return await repository.AllReadonly<Discount>()
+                .Select(x => new DiscountInfoModel()
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    DiscountPercentage = x.DiscountPercentage,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
+                })
+                .FirstOrDefaultAsync(x => x.ProductId == productId);                
+        }
     }
 }
