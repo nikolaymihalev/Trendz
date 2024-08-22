@@ -178,7 +178,7 @@
     </section>    
     <section class="home-recommended">
         @{
-            var recommProducts = await productService.GetProductsWithHighestRatingAsync(15);
+            var recommProducts = await productService.GetProductsWithHighestRatingAsync(50);
 
             if (recommProducts.Any())
             {
@@ -186,7 +186,11 @@
 
                 foreach (var item in recommProducts)
                 {
-                    
+                    var productImages = await productService.GetAllImagesForProductAsync(item.Id);
+                    var firstImage = productImages.FirstOrDefault();
+                    <img src="data:image/png;base64,@firstImage.Image" />
+                    <p>@item.Name</p>
+                    <h5>$@item.Price</h5>
                 }
 
                 <a>More</a>
