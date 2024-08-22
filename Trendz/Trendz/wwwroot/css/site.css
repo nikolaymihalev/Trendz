@@ -219,13 +219,29 @@ body {
         list-style: none outside;
     }
 
-        .home-recommended li img {
-            width: 300px;
-            height: 400px;
-            margin-bottom: 1em;
-        }
+.product-info {
+    text-decoration: none;
+    color: #000;
+}
 
-        .home-recommended li a {
-            text-decoration: none;
-            color: #000;
+    .product-info img {
+        width: 300px;
+        height: 400px;
+        margin-bottom: 1em;
+    }
+
+    .product-info .product-discount {
+        display: flex;
+        gap: 1em;
+        color:red;
+        align-items: center
+    }
+
+        .product-info .product-discount h5 {
+            margin: 0;
+        }
+        .product-info .product-discount p {
+            padding: 0.2em 0.5em;
+            border: 1px solid red;
+            margin: 0;
         }
