@@ -7,24 +7,25 @@
     var firstImage = productImages.FirstOrDefault();
     var discount = await discountService.GetProductDiscountAsync(Model.Id);
 
-    <a asp-action="" asp-controller="" class="product-info">
+    <a asp-action="" asp-controller="" class="product-info-link">
         <img src="data:image/png;base64,@firstImage.Image" />
         <p>@Model.Name</p>
+    </a>
 
+    <div class="product-info-container">
         @{
             if (discount != null)
             {
                 <div class="product-discount">
-                    <h5>$@((Model.Price * (1-discount.DiscountPercentage / 100)).ToString("f"))</h5>
+                    <h5>$@((Model.Price * (1 - discount.DiscountPercentage / 100)).ToString("f"))</h5>
                     <p>-@Convert.ToInt32(discount.DiscountPercentage)%</p>
-                </div>               
+                </div>
             }
             else
             {
                 <h5>$@Model.Price</h5>
             }
         }
-
-        <!-- Add Button for cart-->
-    </a>
+        <button><i class="fa-solid fa-cart-plus" style="color: #000;"></i></button>
+    </div>
 }
