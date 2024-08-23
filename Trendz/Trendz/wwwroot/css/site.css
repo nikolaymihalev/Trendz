@@ -263,3 +263,73 @@ body {
         padding: 0;
         margin: 0;
     }
+
+.footer-container {
+    background: #f7f7f7;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+    .footer-container .left-container,
+    .footer-container .right-container {
+        flex: 1 1 50%;
+    }
+
+        .footer-container .left-container p {
+            margin-top: 5em;
+        }
+
+        .footer-lists {
+            display: flex;
+        }
+
+    .footer-lists ul{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        color: #000;
+    }
+    .footer-lists li {
+        list-style: outside none;        
+    }
+    .footer-lists a {
+        text-decoration: none;
+        color: #000;
+        opacity: 0.6;
+    }
+
+.footer-container .right-container ul {
+    display: flex;
+    gap: 2em;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 2em;
+}
+
+.footer-container .right-container li {
+    list-style: outside none;
+}
+
+.footer-container .right-container i{
+    font-size: 1.5rem;
+}
+
+.footer-container .right-container input,
+.footer-container .right-container button {
+    padding: 0.3em;
+    border: 1px solid #000;
+    border-radius: 0.3em;
+    margin-bottom: 3em;
+}
+
+.footer-container .right-container button{
+    background: #000;
+    color: #fff;
+    padding: 0.3em 1em;
+}
+
+.footer-container .right-container p{
+    width: 400px
+}
