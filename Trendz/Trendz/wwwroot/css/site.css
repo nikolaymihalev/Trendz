@@ -219,28 +219,28 @@ body {
         list-style: none outside;
     }
 
-.product-info {
+.product-info-link {
     text-decoration: none;
     color: #000;
 }
 
-    .product-info img {
+    .product-info-link img {
         width: 300px;
         height: 400px;
         margin-bottom: 1em;
     }
 
-    .product-info .product-discount {
+    .product-info-container .product-discount {
         display: flex;
         gap: 1em;
-        color:red;
+        color: red;
         align-items: center
     }
 
-        .product-info .product-discount h5 {
+        .product-info-container .product-discount h5 {
             margin: 0;
         }
-        .product-info .product-discount p {
+        .product-info-container .product-discount p {
             padding: 0.2em 0.5em;
             border: 1px solid red;
             margin: 0;
