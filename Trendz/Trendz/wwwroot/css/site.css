@@ -230,6 +230,11 @@ body {
         margin-bottom: 1em;
     }
 
+.product-info-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
     .product-info-container .product-discount {
         display: flex;
         gap: 1em;
@@ -245,3 +250,16 @@ body {
             border: 1px solid red;
             margin: 0;
         }
+
+.product-info-container button{
+    background: none;
+    border: 1px solid black;
+    padding: 0.5em;
+    border-radius: 1em;
+}
+
+    .product-info-container button i{
+        font-size: 1.3rem;
+        padding: 0;
+        margin: 0;
+    }
