@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Trendz.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
