@@ -61,5 +61,50 @@ namespace Trendz.Controllers
 
             return RedirectToAction("Home", "Index");
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+
+            var model = new LoginModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await userManager.FindByEmailAsync(model.Email);
+
+            if (user != null)
+            {
+                var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
+
+                if (result.Succeeded)
+                {
+                    if (await userManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        return RedirectToAction("Admin", "Home", new { area = "" });
+                    }
+
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                }
+            }
+
+            ModelState.AddModelError("", "Invalid login");
+
+            return View(model);
+        }
     }
 }
