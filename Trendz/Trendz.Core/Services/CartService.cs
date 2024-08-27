@@ -91,6 +91,22 @@ namespace Trendz.Core.Services
             };
         }
 
+        public async Task<CartModel> GetByUserIdAsync(string userId)
+        {
+            var entity = await repository.AllReadonly<Cart>()
+                .FirstOrDefaultAsync(x=>x.UserId==userId);
+
+            if (entity == null)
+                throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
+
+            return new CartModel()
+            {
+                Id = entity.Id,
+                UserId = entity.UserId,
+                DateCreated = entity.DateCreated,
+            };
+        }
+
         public async Task RemoveItemAsync(int id)
         {
             var entity = await repository.GetByIdAsync<CartItem>(id);
