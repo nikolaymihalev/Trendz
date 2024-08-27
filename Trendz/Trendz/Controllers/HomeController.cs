@@ -20,6 +20,13 @@ namespace Trendz.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Cart()
+        {
+            var model = "";
+
+            return View(model);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
