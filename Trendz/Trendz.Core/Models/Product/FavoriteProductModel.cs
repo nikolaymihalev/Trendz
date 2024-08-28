@@ -13,7 +13,7 @@
         /// <summary>
         /// Product identifier
         /// </summary>
-        public int ProcuctId { get; set; }
+        public int ProductId { get; set; }
 
         /// <summary>
         /// User identifier
