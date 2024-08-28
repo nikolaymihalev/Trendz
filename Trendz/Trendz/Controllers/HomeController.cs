@@ -11,13 +11,16 @@ namespace Trendz.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICartService cartService;
+        private readonly IFavoriteProductService favoriteProductService;
 
         public HomeController(
             ILogger<HomeController> logger,
-            ICartService _cartService)
+            ICartService _cartService,
+            IFavoriteProductService _favoriteProductService)
         {
             _logger = logger;
             cartService = _cartService;
+            favoriteProductService = _favoriteProductService;
         }
 
         [AllowAnonymous]
@@ -40,6 +43,13 @@ namespace Trendz.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+        }
+
+        public async Task<IActionResult> FavoriteProducts() 
+        {
+            var model = await favoriteProductService.GetUserFavoriteProductsAsync(User.Id());
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
