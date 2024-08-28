@@ -24,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IShippingService, ShippingService>();
             services.AddScoped<IWishlistService, WishlistService>();
             services.AddScoped<IRatingService, RatingService>();
+            services.AddScoped<IFavoriteProductService, FavoriteProductService>();
 
             return services;
         }
