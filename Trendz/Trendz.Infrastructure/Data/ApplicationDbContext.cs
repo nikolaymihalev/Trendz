@@ -33,6 +33,7 @@ namespace Trendz.Infrastructure.Data
         public DbSet<ProductImage> ProductImages { get; set; } = null!;
         public DbSet<ProductColor> ProductColors { get; set; } = null!;
         public DbSet<ProductSize> ProductSizes { get; set; } = null!;
+        public DbSet<FavoriteProduct> FavoriteProducts { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -53,6 +54,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new OrderItemConfiguration());
             builder.ApplyConfiguration(new DiscountConfiguration());
             builder.ApplyConfiguration(new RatingConfiguration());
+            builder.ApplyConfiguration(new FavoriteProductConfiguration());
 
             base.OnModelCreating(builder);
         }

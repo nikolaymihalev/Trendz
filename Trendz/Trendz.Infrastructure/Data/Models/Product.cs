@@ -57,5 +57,6 @@ namespace Trendz.Infrastructure.Data.Models
         public ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
         public ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+        public ICollection<FavoriteProduct> FavoriteProducts { get; set; } = new List<FavoriteProduct>();
     }
 }

@@ -23,7 +23,7 @@ namespace Trendz.Infrastructure.Data.Models
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
 
-        [ForeignKey(nameof(ProductId))]
+        [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; } = null!;
     }
 }
