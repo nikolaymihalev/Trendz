@@ -34,7 +34,7 @@
                     foreach (var item in categories)
                     {
                         <li>
-                            <a asp-action="" asp-controller="">@item.Name</a>
+                            <a asp-action="Products" asp-controller="Home" asp-route-category="@item.Name">@item.Name</a>
                         </li>
                     }
                 }
