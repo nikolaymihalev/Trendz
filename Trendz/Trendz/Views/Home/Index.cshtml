@@ -61,13 +61,13 @@
                         if (i == 0)
                         {
                             <li>
-                                <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="" asp-controller="" asp-route-percentage="@array[i].Percentage"><img src="data:image/png;base64,@array[i].Image" /></a>
                             </li>
                         }
                         else
                         {
                             <li>
-                                <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="@array[i].Percentage" asp-controller=""><img src="data:image/png;base64,@array[i].Image" /></a>
+                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="" asp-controller="" asp-route-percentage="@array[i].Percentage"><img src="data:image/png;base64,@array[i].Image" /></a>
                             </li>
                                 
                         }
@@ -83,43 +83,43 @@
             <li>
                 <ul>
                     <li>                        
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Women">
                             <img src="~/images/top-category/women.png" />
                             Women
                         </a>
                     </li>
                     <li>                        
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Curve">
                             <img src="~/images/top-category/curve.png" />
                             Curve
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Kids">
                             <img src="~/images/top-category/kids.png" />
                             Kids
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Men">
                             <img src="~/images/top-category/men.png" />
                             Men
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Dresses">
                             <img src="~/images/top-category/dresses.png" />
                             Dresses
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Tops">
                             <img src="~/images/top-category/tops.png" />
                             Tops
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Beachwear">
                             <img src="~/images/top-category/beachwear.png" />
                             Beachwear
                         </a>
@@ -129,43 +129,43 @@
             <li>
                 <ul>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Home & Living">
                             <img src="~/images/top-category/home.png" />
                             Home & Living
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Beauty & Health">
                             <img src="~/images/top-category/beauty.png" />
                             Beauty & Health
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Underwear">
                             <img src="~/images/top-category/underwear.png" />
                             Underwear
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Sports">
                             <img src="~/images/top-category/sport.png" />
                             Sports
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Shoes & Bags">
                             <img src="~/images/top-category/shoes.png" />
                             Shoes & Bags
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Accessories">
                             <img src="~/images/top-category/accessories.png" />
                             Accessories
                         </a>
                     </li>
                     <li>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="Electornics">
                             <img src="~/images/top-category/electronics.png" />
                             Electornics
                         </a>
