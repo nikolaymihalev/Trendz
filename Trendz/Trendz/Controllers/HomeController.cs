@@ -66,6 +66,19 @@ namespace Trendz.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Recommended(string category, string sorting, int currentPage = 1)
+        {
+            var model = await productService.GetProductsForPageAsync(category, sorting, currentPage);
+            
+            var allProd = await productService.GetAllProductsAsync();
+
+            model.Products = await productService.GetProductsWithHighestRatingAsync(allProd.Count());
+
+            return View(model);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
