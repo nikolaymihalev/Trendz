@@ -197,6 +197,52 @@ namespace Trendz.Core.Services
             };
         }
 
+        public async Task<ProductQueryModel> GetProductsForPageAsync(string? category = null, string? sorting = null, int currentPage = 1)
+        {
+            var model = new ProductQueryModel();
+
+            int formula = (currentPage - 1) * ValidationConstants.MaxProductsPerPage;
+
+            if (currentPage <= 1)
+            {
+                formula = 0;
+            }
+
+            model.Products = await GetAllProductsAsync();
+
+            if (category != null)
+            {
+                if (category.ToLower() != "all")
+                {
+                    
+                    model.Category = category;
+                }
+            }
+
+            if (sorting != null)
+            {
+                if (sorting.ToLower() == "newest")
+                {
+                    model.Products = model.Products.OrderByDescending(x => x.DateAdded).ToList();
+                    model.Sorting = sorting;
+                }
+                else if (sorting.ToLower() == "oldest")
+                {
+                    model.Products = model.Products.OrderBy(x => x.DateAdded).ToList();
+                    model.Sorting = sorting;
+                }
+            }
+            model.PagesCount = Math.Ceiling((model.Products.Count() / Convert.ToDouble(ValidationConstants.MaxProductsPerPage)));
+
+            model.Products = model.Products
+                .Skip(formula)
+                .Take(ValidationConstants.MaxProductsPerPage);
+
+            model.CurrentPage = currentPage;
+
+            return model;
+        }
+
         public async Task<IEnumerable<ProductInfoModel>> GetProductsWithHighestRatingAsync(int count)
         {
             return await repository.AllReadonly<Rating>()

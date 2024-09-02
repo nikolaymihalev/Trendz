@@ -16,5 +16,7 @@
 
         public const int PasswordMinLength = 5;
         public const int PasswordMaxLength = 20;
+
+        public const int MaxProductsPerPage = 50;
     }
 }
