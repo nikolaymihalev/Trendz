@@ -161,6 +161,7 @@ namespace Trendz.Core.Services
                     BrandId = x.BrandId,
                     StockQuantity = x.StockQuantity,
                     DateAdded = x.DateAdded,
+                    CategoryName = x.Category.Name
                 })
                 .ToListAsync();
         }
@@ -194,6 +195,7 @@ namespace Trendz.Core.Services
                 BrandId = entity.BrandId,
                 StockQuantity = entity.StockQuantity,
                 DateAdded = entity.DateAdded,
+                CategoryName = entity.Category.Name
             };
         }
 
@@ -214,7 +216,9 @@ namespace Trendz.Core.Services
             {
                 if (category.ToLower() != "all")
                 {
-                    
+                    model.Products = model.Products
+                        .Where(x => x.CategoryName.ToLower() == category.ToLower())
+                        .ToList();
                     model.Category = category;
                 }
             }
@@ -257,6 +261,7 @@ namespace Trendz.Core.Services
                     BrandId = x.Product.BrandId,
                     StockQuantity = x.Product.StockQuantity,
                     DateAdded = x.Product.DateAdded,
+                    CategoryName = x.Product.Category.Name
                 })
                 .Take(count)
                 .ToListAsync();

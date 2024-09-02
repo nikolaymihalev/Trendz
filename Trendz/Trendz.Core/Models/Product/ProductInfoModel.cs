@@ -31,6 +31,11 @@
         public int CategoryId { get; set; }
 
         /// <summary>
+        /// Category name
+        /// </summary>
+        public string CategoryName { get; set; } = string.Empty;
+
+        /// <summary>
         /// Brand identifier
         /// </summary>
         public int BrandId { get; set; }
