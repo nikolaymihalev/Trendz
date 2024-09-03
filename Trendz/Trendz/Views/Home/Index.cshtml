@@ -61,13 +61,13 @@
                         if (i == 0)
                         {
                             <li>
-                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="" asp-controller="" asp-route-percentage="@array[i].Percentage"><img src="data:image/png;base64,@array[i].Image" /></a>
+                                    <a class="coupon-enabled" data-coupon-id="coupon-@i" asp-action="Discount" asp-controller="Home" asp-route-percentage="@array[i].Percentage"><img src="data:image/png;base64,@array[i].Image" /></a>
                             </li>
                         }
                         else
                         {
                             <li>
-                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="" asp-controller="" asp-route-percentage="@array[i].Percentage"><img src="data:image/png;base64,@array[i].Image" /></a>
+                                    <a class="coupon-disabled" data-coupon-id="coupon-@i" asp-action="Discount" asp-controller="Home" asp-route-percentage="@array[i].Percentage"><img src="data:image/png;base64,@array[i].Image" /></a>
                             </li>
                                 
                         }

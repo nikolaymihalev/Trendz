@@ -13,17 +13,20 @@ namespace Trendz.Controllers
         private readonly ICartService cartService;
         private readonly IFavoriteProductService favoriteProductService;
         private readonly IProductService productService;
+        private readonly IDiscountService discountService;
 
         public HomeController(
             ILogger<HomeController> logger,
             ICartService _cartService,
             IFavoriteProductService _favoriteProductService,
-            IProductService _productService)
+            IProductService _productService,
+            IDiscountService _discountService)
         {
             _logger = logger;
             cartService = _cartService;
             favoriteProductService = _favoriteProductService;
             productService = _productService;
+            discountService = _discountService;
         }
 
         [AllowAnonymous]
@@ -59,7 +62,7 @@ namespace Trendz.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ProductsPage(string category, string sorting, int currentPage = 1) 
+        public async Task<IActionResult> Products(string category, string sorting, int currentPage = 1) 
         {
             var model = await productService.GetProductsForPageAsync(category, sorting, currentPage);
 
@@ -75,6 +78,15 @@ namespace Trendz.Controllers
             var allProd = await productService.GetAllProductsAsync();
 
             model.Products = await productService.GetProductsWithHighestRatingAsync(allProd.Count());
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Discount(decimal percentage) 
+        {
+            var model = await discountService.GetDiscountsPerPercentageAsync(percentage);
 
             return View(model);
         }
