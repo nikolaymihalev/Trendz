@@ -24,7 +24,7 @@ namespace Trendz.Controllers
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Home", "Post");
+                return RedirectToAction("Home", "Index");
             }
 
             var model = new RegisterModel();
