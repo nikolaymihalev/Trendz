@@ -2,8 +2,8 @@
 
 <div class="register-container">
     <form asp-action="Register" asp-controller="User" method="post" enctype="multipart/form-data">
-        <label for="email">Email Address</label>
-        <input id="email" type="email"/>
+        <label for="register-email">Email Address</label>
+        <input id="register-email" type="email"/>
 
         <label for="password">Password</label>
         <input id="password" type="password"/>
@@ -11,6 +11,6 @@
         <label for="confirm-password">Confirm Password</label>
         <input id="confirm-password" type="password" />
 
-        <input type="submit" value="Register"/>
+        <input id="register-btn" type="submit" value="Register"/>
     </form>
 </div>
