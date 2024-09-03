@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Trendz.Areas.Identity.Pages.Account
+namespace Trendz.Views.User
 {
     public class LogoutModel : PageModel
     {
