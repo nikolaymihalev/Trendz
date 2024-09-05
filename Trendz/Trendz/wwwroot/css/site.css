@@ -333,3 +333,13 @@ body {
 .footer-container .right-container p{
     width: 400px
 }
+
+#registerForm{
+    margin: 2em 0;
+}
+
+#registerForm button{
+    background: #000;
+    border: none;
+    margin-top: 1em;
+}
