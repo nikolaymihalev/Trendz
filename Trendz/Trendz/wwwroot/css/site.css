@@ -338,8 +338,14 @@ body {
     margin: 2em 0;
 }
 
-#registerForm button{
-    background: #000;
-    border: none;
-    margin-top: 1em;
-}
+    #registerForm button{
+        background: #000;
+        border: none;
+        margin-top: 0.5em;
+    }
+
+    #registerForm a {
+        display: inline-block;
+        margin-top: 1em;
+        color: #000;
+    }
