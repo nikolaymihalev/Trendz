@@ -1,0 +1,39 @@
+﻿@inject ICategoryService categoryService
+
+<img class="home-new-coupon" src="~/images/discount_banner.png" />
+<section class="home-nav">
+    <a class="home-logo" asp-controller="Home" asp-action="Index">T R E N D z</a>
+    <div class="nav-search">
+        <form>
+            <label for="search">Bikini</label>
+            <input type="text" id="search" name="search" />
+            <button type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #fff;"></i></button>
+        </form>
+    </div>
+    <div class="nav-links">
+        <ul>
+            <li><a asp-controller="User" asp-action="Register"><i class="fa-solid fa-right-to-bracket" style="color: #000;"></i></a></li>
+            @if (User?.Identity?.IsAuthenticated == true)
+            {
+                <li><a asp-controller="Home" asp-action="Cart"><i class="fa-solid fa-cart-shopping" style="color: #000;"></i></a></li>
+                <li><a asp-controller="Home" asp-action="FavoriteProducts"><i class="fa-solid fa-heart" style="color: #000;"></i></a></li>
+            }
+        </ul>
+    </div>
+</section>
+<section class="home-categories">
+    @{
+        var categories = await categoryService.GetAllCategoriesAsync();
+
+        <ul>
+            @{
+                foreach (var item in categories)
+                {
+                    <li>
+                        <a asp-action="Products" asp-controller="Home" asp-route-category="@item.Name">@item.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    }
+</section>

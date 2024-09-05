@@ -1,5 +1,4 @@
-﻿@inject ICategoryService categoryService
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,43 +11,7 @@
 </head>
 <body>
     <header style="margin: 0 2em;">
-        <img class="home-new-coupon" src="~/images/discount_banner.png" />
-        <section class="home-nav">
-            <a class="home-logo" asp-controller="Home" asp-action="Index">T R E N D z</a>
-            <div class="nav-search">
-                <form>
-                    <label for="search">Bikini</label>
-                    <input type="text" id="search" name="search" />
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #fff;"></i></button>
-                </form>
-            </div>
-            <div class="nav-links">
-                <ul>
-                    <li><a asp-controller="User" asp-action="Register"><i class="fa-solid fa-right-to-bracket" style="color: #000;"></i></a></li>
-                    @if (User?.Identity?.IsAuthenticated == true)
-                    {                     
-                        <li><a asp-controller="Home" asp-action="Cart"><i class="fa-solid fa-cart-shopping" style="color: #000;"></i></a></li>
-                        <li><a asp-controller="Home" asp-action="FavoriteProducts"><i class="fa-solid fa-heart" style="color: #000;"></i></a></li>
-                    }
-                </ul>
-            </div>
-        </section>
-        <section class="home-categories">
-            @{
-                var categories = await categoryService.GetAllCategoriesAsync();
-
-                <ul>
-                    @{
-                        foreach (var item in categories)
-                        {
-                            <li>
-                                <a asp-action="Products" asp-controller="Home" asp-route-category="@item.Name">@item.Name</a>
-                            </li>
-                        }
-                    }
-                </ul>
-            }
-        </section>
+        <partial name="_HeaderPartial"/>
     </header>
 
     <div class="container">
@@ -58,79 +21,7 @@
     </div>
 
     <footer class="footer-container">
-        <div class="left-container">
-            <div class="footer-lists">
-                <ul>
-                    COMPANY INFO
-                    <li>
-                        <a asp-action="" asp-controller="">About TRENDz</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">Fashion Blogger</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">Careers</a>
-                    </li>
-                </ul>
-                <ul>
-                    HELP & SUPPORT
-                    <li>
-                        <a asp-action="" asp-controller="">Shipping Info</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">Returns</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">Refund</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">How to Order</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">How to Track</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">Size Guide</a>
-                    </li>
-                </ul>
-                <ul>
-                    CUSTOMER CARE
-                    <li>
-                        <a asp-action="" asp-controller="">Contact us</a>
-                    </li>
-                    <li>
-                        <a asp-action="" asp-controller="">Payment & Tax</a>
-                    </li>
-                </ul>
-            </div>
-            <p>&copy;@DateTime.Now.Year TRENDZ All Rights Reserved</p>
-        </div>
-        <div class="right-container">
-            <p>FIND US ON</p>
-            <ul>                
-                <li>
-                    <a href="#"><i class="fa-brands fa-facebook" style="color: #000"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-brands fa-instagram" style="color: #000"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-brands fa-twitter" style="color: #000"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-brands fa-tiktok" style="color: #000"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-brands fa-youtube" style="color: #000"></i></a>
-                </li>
-            </ul>
-            <p>Sign up for Trendz style news</p>
-            <form>
-                <input id="email" type="email" placeholder="Your Email Address" />
-                <button type="submit">Subscribe</button>
-            </form>
-            <p>By clicking the SUBSCRIBE button, you are agreeing to our Privacy & Cookie Policy  If you want to unsubsribe the marketing email, please proceed to our privacy center.</p>
-        </div>
+        <partial name="_FooterPartial" />
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
