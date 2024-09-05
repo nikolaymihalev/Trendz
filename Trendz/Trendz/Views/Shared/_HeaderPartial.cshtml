@@ -12,6 +12,7 @@
     </div>
     <div class="nav-links">
         <ul>
+            <!--Change to login button-->
             <li><a asp-controller="User" asp-action="Register"><i class="fa-solid fa-right-to-bracket" style="color: #000;"></i></a></li>
             @if (User?.Identity?.IsAuthenticated == true)
             {
