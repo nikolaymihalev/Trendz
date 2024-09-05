@@ -334,11 +334,13 @@ body {
     width: 400px
 }
 
-#registerForm{
+#registerForm,
+#account {
     margin: 2em 0;
 }
 
-    #registerForm button{
+    #registerForm button,
+    #account button{
         background: #000;
         border: none;
         margin-top: 0.5em;
