@@ -11,5 +11,6 @@ namespace Trendz.Core.Contracts
         Task<CartModel> GetByUserIdAsync(string userId);
         Task AddItemAsync(CartItemModel model);
         Task RemoveItemAsync(int id);
+        Task<int> GetUserCartItemCountAsync(string userId);
     }
 }

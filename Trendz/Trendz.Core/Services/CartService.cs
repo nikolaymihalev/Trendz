@@ -107,6 +107,18 @@ namespace Trendz.Core.Services
             };
         }
 
+        public async Task<int> GetUserCartItemCountAsync(string userId)
+        {
+            var cart = await repository.AllReadonly<Cart>().FirstOrDefaultAsync(x=>x.UserId==userId);
+
+            if (cart != null) 
+            {
+                return await repository.AllReadonly<CartItem>().Where(x => x.CartId == cart.Id).CountAsync();
+            }
+
+            return 0;
+        }
+
         public async Task RemoveItemAsync(int id)
         {
             var entity = await repository.GetByIdAsync<CartItem>(id);
