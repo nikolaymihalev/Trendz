@@ -106,5 +106,13 @@ namespace Trendz.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }
