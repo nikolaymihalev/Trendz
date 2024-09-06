@@ -63,12 +63,24 @@ body {
         position: absolute;
     }
 
-.user-links-container li {
-    flex: 1 1 auto;
-    width: 100%;
-    font-size: 0.7rem;
-    opacity: 0.8;
-}
+    .nav-links ul .user-link a {
+        display: flex;
+        align-items: center;
+    }
+
+        .nav-links ul .user-link a p {
+            margin: 0 0 0 0.5em;
+            padding: 0;
+            opacity: 0.8;
+            font-size: 1.4rem;
+        }
+
+    .user-links-container li {
+        flex: 1 1 auto;
+        width: 100%;
+        font-size: 0.7rem;
+        opacity: 0.8;
+    }
 
 .home-logo {
     text-decoration: none;

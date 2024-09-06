@@ -89,6 +89,13 @@ namespace Trendz.Core.Services
             return list;
         }
 
+        public async Task<int> GetUserFavoriteProductsCountAsync(string userId)
+        {
+            return await repository.AllReadonly<FavoriteProduct>()
+                .Where(x => x.UserId == userId)
+                .CountAsync();
+        }
+
         public async Task<bool> IsFavoriteProductExistsAsync(int productId, string userId)
         {
             var entity = await repository.AllReadonly<FavoriteProduct>()
