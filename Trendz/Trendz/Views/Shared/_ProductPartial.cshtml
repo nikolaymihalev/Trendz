@@ -8,7 +8,7 @@
     var discount = await discountService.GetProductDiscountAsync(Model.Id);
 
     <div class="product-info-parent-container">
-        <a asp-action="" asp-controller="" class="product-info-link">
+        <a asp-action="Product" asp-controller="Home" asp-route-id="@Model.Id" class="product-info-link">
             <img src="data:image/png;base64,@firstImage.Image" />
             <p>@Model.Name</p>
         </a>

@@ -91,6 +91,21 @@ namespace Trendz.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Product(int id) 
+        {
+            try
+            {
+                var model = await productService.GetByIdAsync(id);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
