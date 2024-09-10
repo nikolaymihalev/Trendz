@@ -385,3 +385,17 @@ body {
         margin-top: 1em;
         color: #000;
     }
+
+
+.products-page-container {
+    margin: 2em 0;
+}
+.products-page-container ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.products-page-container li {
+    list-style: outside none;
+}
