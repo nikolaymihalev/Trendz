@@ -27,8 +27,8 @@ namespace Trendz.Infrastructure.Data
         public IdentityUser Guest { get; set; } = null!;
         public IdentityUser BrandOwner { get; set; } = null!;
         public Brand Brand { get; set; } = null!;
-        public Category MenTshirt { get; set; } = null!;
-        public Category WomenTshirt { get; set; } = null!;
+        public Category Men { get; set; } = null!;
+        public Category Women { get; set; } = null!;
         public Cart Cart { get; set; } = null!;
         public Wishlist Wishlist { get; set; } = null!;
         public Product BlackTshirt { get; set; } = null!;
@@ -86,17 +86,17 @@ namespace Trendz.Infrastructure.Data
 
         private void SeedCategories() 
         {
-            MenTshirt = new Category()
+            Men = new Category()
             {
                 Id = 1,
-                Name = "Men T-Shirts",
+                Name = "Men",
                 DateAdded = DateTime.Parse("17/06/2024")
             };
 
-            WomenTshirt = new Category()
+            Women = new Category()
             {
                 Id = 2,
-                Name = "Women T-Shirts",
+                Name = "Women",
                 DateAdded = DateTime.Parse("17/06/2024")
             };
         }

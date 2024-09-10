@@ -10,7 +10,7 @@ namespace Trendz.Infrastructure.Data.Configurations
         {
             var data = new SeedData();
 
-            builder.HasData(new Category[] { data.MenTshirt, data.WomenTshirt });
+            builder.HasData(new Category[] { data.Men, data.Women });
         }
     }
 }
