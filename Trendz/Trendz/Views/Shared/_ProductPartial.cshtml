@@ -7,25 +7,27 @@
     var firstImage = productImages.FirstOrDefault();
     var discount = await discountService.GetProductDiscountAsync(Model.Id);
 
-    <a asp-action="" asp-controller="" class="product-info-link">
-        <img src="data:image/png;base64,@firstImage.Image" />
-        <p>@Model.Name</p>
-    </a>
+    <div class="product-info-parent-container">
+        <a asp-action="" asp-controller="" class="product-info-link">
+            <img src="data:image/png;base64,@firstImage.Image" />
+            <p>@Model.Name</p>
+        </a>
 
-    <div class="product-info-container">
-        @{
-            if (discount != null)
-            {
-                <div class="product-discount">
-                    <h5>$@((Model.Price * (1 - discount.DiscountPercentage / 100)).ToString("f"))</h5>
-                    <p>-@Convert.ToInt32(discount.DiscountPercentage)%</p>
-                </div>
+        <div class="product-info-container">
+            @{
+                if (discount != null)
+                {
+                    <div class="product-discount">
+                        <h5>$@((Model.Price * (1 - discount.DiscountPercentage / 100)).ToString("f"))</h5>
+                        <p>-@Convert.ToInt32(discount.DiscountPercentage)%</p>
+                    </div>
+                }
+                else
+                {
+                    <h5>$@Model.Price</h5>
+                }
             }
-            else
-            {
-                <h5>$@Model.Price</h5>
-            }
-        }
-        <button id="product-info-cart-btn"><i class="fa-solid fa-cart-plus" style="color: #000;"></i></button>
-    </div>
+            <button id="product-info-cart-btn"><i class="fa-solid fa-cart-plus" style="color: #000;"></i></button>
+        </div>
+    </div>    
 }

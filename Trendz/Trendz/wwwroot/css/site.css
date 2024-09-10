@@ -252,6 +252,14 @@ body {
         list-style: none outside;
     }
 
+.product-info-parent-container {
+    box-shadow: none;
+    padding: 0.5em;
+}
+.product-info-parent-container:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .product-info-link {
     text-decoration: none;
     color: #000;
@@ -393,7 +401,7 @@ body {
 .products-page-container ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 2em;
+    gap: 1em;
 }
 
 .products-page-container li {
