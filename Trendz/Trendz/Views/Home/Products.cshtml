@@ -1,4 +1,21 @@
 ﻿@model ProductQueryModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="products-page-container">
+    <ul>
+    @{
+        foreach (var product in Model.Products)
+        {
+            <li>
+                <partial name="_ProductPartial" model="@product" />
+            </li>
+        }
+    }
+    </ul>
+</div>
+
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">

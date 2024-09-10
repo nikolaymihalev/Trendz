@@ -258,15 +258,16 @@ body {
 }
 
     .product-info-link img {
-        width: 300px;
         height: 400px;
+        width: 300px;
         margin-bottom: 1em;
     }
 
-.product-info-container{
+.product-info-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 300px;
 }
     .product-info-container .product-discount {
         display: flex;
