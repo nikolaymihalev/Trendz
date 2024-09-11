@@ -7,22 +7,57 @@
 <div>
     <div>
         <h4>@Model.Name</h4>
-        <h4>@ratingService.GetAverageRatingAboutProductAsync(Model.Id)</h4>
-        <h2>@Model.Price</h2>
-        <p>Size</p>
-        <ul>
-            @{
-                var sizes = await productService.GetAllSizesForProductAsync(Model.Id);
-                foreach (var item in sizes)
-                {
-                    var size = await sizeService.GetByIdAsync(item.SizeId);
+        <div class="product-rating-stars">
+            <ul>
+                @{
+                    var averageRating = await ratingService.GetAverageRatingAboutProductAsync(Model.Id);
+
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        if (i <= averageRating)
+                        {
+                            <li>
+                                <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                            </li>
+                        }
+                        else if (i - 1 > averageRating)
+                        {
+                            <li>
+                                <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                            </li>
+                        }
+                    }
                     <li>
-                        @size.Name
+                        <p>(1 Reviews)</p>
                     </li>
+                }                
+            </ul>
+        </div>
+        <div class="product-price">
+            <h2>@Model.Price</h2>
+        </div>
+        <div class="product-sizes">
+            <p>Choose Size</p>
+            <ul>
+                @{
+                    var sizes = await productService.GetAllSizesForProductAsync(Model.Id);
+                    foreach (var item in sizes)
+                    {
+                        var size = await sizeService.GetByIdAsync(item.SizeId);
+                        <li>
+                            @size.Name
+                        </li>
+                    }
                 }
-            }            
-        </ul>
-        <div>
+            </ul>
+        </div>        
+        <div class="product-buttons">
             <button>Add to cart</button>
             <button><i class="fa-regular fa-heart" style="color: #000"></i></button>
         </div>
