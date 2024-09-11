@@ -11,6 +11,7 @@
             <ul>
                 @{
                     var averageRating = await ratingService.GetAverageRatingAboutProductAsync(Model.Id);
+                    var reviewsCount = await reviewService.GetReviewsForProductCountAsync(Model.Id);
 
                     for (int i = 1; i <= 5; i++)
                     {
@@ -34,7 +35,7 @@
                         }
                     }
                     <li>
-                        <p>(1 Reviews)</p>
+                        <p>(@reviewsCount Reviews)</p>
                     </li>
                 }                
             </ul>

@@ -28,5 +28,7 @@ namespace Trendz.Infrastructure.Data.Models
 
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
+
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

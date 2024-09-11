@@ -21,9 +21,9 @@
         public string UserId { get; set; } = string.Empty;
 
         /// <summary>
-        /// Review rating
+        /// Rating identifier
         /// </summary>
-        public int Rating { get; set; }
+        public int RatingId { get; set; }
 
         /// <summary>
         /// User comment

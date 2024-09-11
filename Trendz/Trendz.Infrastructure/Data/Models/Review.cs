@@ -20,9 +20,9 @@ namespace Trendz.Infrastructure.Data.Models
         [Required]
         public string UserId { get; set; } = string.Empty;
 
-        [Comment("Review rating")]
+        [Comment("Rating identifier")]
         [Required]
-        public int Rating { get; set; }
+        public int RatingId { get; set; }
 
         [Comment("User comment")]
         public string Comment { get; set; } = string.Empty;
@@ -36,5 +36,8 @@ namespace Trendz.Infrastructure.Data.Models
 
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; } = null!;
+
+        [ForeignKey(nameof(RatingId))]
+        public Rating Rating { get; set; } = null!;
     }
 }

@@ -26,10 +26,10 @@ namespace Trendz.Core.Models.Review
         public string UserId { get; set; } = string.Empty;
 
         /// <summary>
-        /// Review rating
+        /// Rating identifier
         /// </summary>
         [Required(ErrorMessage = ErrorMessageConstants.RequireErrorMessage)]
-        public int Rating { get; set; }
+        public int RatingId { get; set; }
 
         /// <summary>
         /// User comment

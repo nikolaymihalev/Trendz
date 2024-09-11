@@ -22,7 +22,7 @@ namespace Trendz.Core.Services
             {
                 ProductId = model.ProductId,
                 UserId = model.UserId,
-                Rating = model.Rating,
+                RatingId = model.RatingId,
                 Comment = model.Comment,
                 PublishDate = model.PublishDate
             };
@@ -54,7 +54,7 @@ namespace Trendz.Core.Services
             {
                 entity.ProductId = model.ProductId;
                 entity.UserId = model.UserId;
-                entity.Rating = model.Rating;
+                entity.RatingId = model.RatingId;
                 entity.Comment = model.Comment;
                 entity.PublishDate = model.PublishDate;
 
@@ -70,7 +70,7 @@ namespace Trendz.Core.Services
                     Id = x.Id,
                     ProductId = x.ProductId,
                     UserId = x.UserId,
-                    Rating = x.Rating,
+                    RatingId = x.RatingId,
                     Comment = x.Comment,
                     PublishDate = x.PublishDate
                 })
@@ -86,7 +86,7 @@ namespace Trendz.Core.Services
                     Id = x.Id,
                     ProductId = x.ProductId,
                     UserId = x.UserId,
-                    Rating = x.Rating,
+                    RatingId = x.RatingId,
                     Comment = x.Comment,
                     PublishDate = x.PublishDate
                 })
@@ -105,7 +105,7 @@ namespace Trendz.Core.Services
                 Id = entity.Id,
                 ProductId = entity.ProductId,
                 UserId = entity.UserId,
-                Rating = entity.Rating,
+                RatingId = entity.RatingId,
                 Comment = entity.Comment,
                 PublishDate = entity.PublishDate
             };

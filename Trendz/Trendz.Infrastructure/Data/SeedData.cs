@@ -20,6 +20,7 @@ namespace Trendz.Infrastructure.Data
             SeedProductSizes();
             SeedCoupons();
             SeedRatings();
+            SeedReviews();
             SeedDiscounts();
             SeedFavoriteProducts();
         }
@@ -45,6 +46,7 @@ namespace Trendz.Infrastructure.Data
         public Coupon Coupon { get; set; } = null!;
         public Coupon Coupon20 { get; set; } = null!;
         public Rating FiveStar { get; set; } = null!;
+        public Review FiveStarReview { get; set; } = null!;
         public Discount Discount20 { get; set; } = null!;
         public FavoriteProduct FavoriteProduct { get; set; } = null!;
 
@@ -239,6 +241,19 @@ namespace Trendz.Infrastructure.Data
                 UserId = Guest.Id,
                 ProductId = BlackTshirt.Id,
                 Value = 5.0
+            };
+        }
+
+        private void SeedReviews() 
+        {
+            FiveStarReview = new Review()
+            {
+                Id = 1,
+                ProductId = BlackTshirt.Id,
+                UserId = Guest.Id,
+                RatingId = FiveStar.Id,
+                Comment = "Super cute for a party. True to size, it's a bit thin but still good quality, felt super comfortabcomfortable.",
+                PublishDate = DateTime.Parse("11/08/2024")
             };
         }
 
