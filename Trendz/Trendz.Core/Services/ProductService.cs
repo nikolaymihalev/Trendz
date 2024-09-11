@@ -151,6 +151,7 @@ namespace Trendz.Core.Services
         public async Task<IEnumerable<ProductInfoModel>> GetAllProductsAsync()
         {
             return await repository.AllReadonly<Product>()
+                .Include(x=>x.Category)
                 .Select(x => new ProductInfoModel()
                 {
                     Id = x.Id,
@@ -185,6 +186,8 @@ namespace Trendz.Core.Services
             if (entity == null)
                 throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
 
+            var category = await repository.GetByIdAsync<Category>(entity.CategoryId);
+
             return new ProductInfoModel()
             {
                 Id = entity.Id,
@@ -195,7 +198,7 @@ namespace Trendz.Core.Services
                 BrandId = entity.BrandId,
                 StockQuantity = entity.StockQuantity,
                 DateAdded = entity.DateAdded,
-                CategoryName = entity.Category.Name
+                CategoryName = category.Name
             };
         }
 
