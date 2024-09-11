@@ -74,10 +74,8 @@ namespace Trendz.Controllers
         public async Task<IActionResult> Recommended(string category, string sorting, int currentPage = 1)
         {
             var model = await productService.GetProductsForPageAsync(category, sorting, currentPage);
-            
-            var allProd = await productService.GetAllProductsAsync();
 
-            model.Products = await productService.GetProductsWithHighestRatingAsync(allProd.Count());
+            model.Products = await productService.GetProductsWithHighestRatingAsync();
 
             return View(model);
         }

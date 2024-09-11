@@ -250,24 +250,45 @@ namespace Trendz.Core.Services
             return model;
         }
 
-        public async Task<IEnumerable<ProductInfoModel>> GetProductsWithHighestRatingAsync(int count)
+        public async Task<IEnumerable<ProductInfoModel>> GetProductsWithHighestRatingAsync(int count = 0, bool all = true)
         {
-            return await repository.AllReadonly<Rating>()
-                .OrderByDescending(x => x.Value)
-                .Select(x => new ProductInfoModel()
-                {
-                    Id = x.Product.Id,
-                    Name = x.Product.Name,
-                    Description = x.Product.Description,
-                    Price = x.Product.Price,
-                    CategoryId = x.Product.CategoryId,
-                    BrandId = x.Product.BrandId,
-                    StockQuantity = x.Product.StockQuantity,
-                    DateAdded = x.Product.DateAdded,
-                    CategoryName = x.Product.Category.Name
-                })
-                .Take(count)
-                .ToListAsync();
+            if (all)
+            {
+                return await repository.AllReadonly<Rating>()
+                    .OrderByDescending(x => x.Value)
+                    .Select(x => new ProductInfoModel()
+                    {
+                        Id = x.Product.Id,
+                        Name = x.Product.Name,
+                        Description = x.Product.Description,
+                        Price = x.Product.Price,
+                        CategoryId = x.Product.CategoryId,
+                        BrandId = x.Product.BrandId,
+                        StockQuantity = x.Product.StockQuantity,
+                        DateAdded = x.Product.DateAdded,
+                        CategoryName = x.Product.Category.Name
+                    })
+                    .ToListAsync();
+            }
+            else 
+            {
+                return await repository.AllReadonly<Rating>()
+                    .OrderByDescending(x => x.Value)
+                    .Select(x => new ProductInfoModel()
+                    {
+                        Id = x.Product.Id,
+                        Name = x.Product.Name,
+                        Description = x.Product.Description,
+                        Price = x.Product.Price,
+                        CategoryId = x.Product.CategoryId,
+                        BrandId = x.Product.BrandId,
+                        StockQuantity = x.Product.StockQuantity,
+                        DateAdded = x.Product.DateAdded,
+                        CategoryName = x.Product.Category.Name
+                    })
+                    .Take(count)
+                    .ToListAsync();
+            }
         }
 
         public async Task RemoveColorAsync(int productId, int colorId)
