@@ -16,15 +16,16 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IFavoriteProductService, FavoriteProductService>();
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IRatingService, RatingService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IShippingService, ShippingService>();
-            services.AddScoped<IWishlistService, WishlistService>();
-            services.AddScoped<IRatingService, RatingService>();
-            services.AddScoped<IFavoriteProductService, FavoriteProductService>();
+            services.AddScoped<ISizeService, SizeService>();
+            services.AddScoped<IWishlistService, WishlistService>();            
 
             return services;
         }
