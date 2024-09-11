@@ -1,0 +1,30 @@
+﻿@model ProductInfoModel
+@inject IProductService productService
+@inject IRatingService ratingService
+@inject IReviewService reviewService
+@inject ISizeService sizeService
+
+<div>
+    <div>
+        <h4>@Model.Name</h4>
+        <h4>@ratingService.GetAverageRatingAboutProductAsync(Model.Id)</h4>
+        <h2>@Model.Price</h2>
+        <p>Size</p>
+        <ul>
+            @{
+                var sizes = await productService.GetAllSizesForProductAsync(Model.Id);
+                foreach (var item in sizes)
+                {
+                    var size = await sizeService.GetByIdAsync(item.SizeId);
+                    <li>
+                        @size.Name
+                    </li>
+                }
+            }            
+        </ul>
+        <div>
+            <button>Add to cart</button>
+            <button><i class="fa-regular fa-heart" style="color: #000"></i></button>
+        </div>
+    </div>
+</div>
