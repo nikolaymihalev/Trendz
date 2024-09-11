@@ -6,6 +6,7 @@ namespace Trendz.Core.Contracts
     {
         Task<IEnumerable<ReviewInfoModel>> GetAllReviewsAsync();
         Task<IEnumerable<ReviewInfoModel>> GetAllReviewsForProductAsync(int id);
+        Task<int> GetReviewsForProductCountAsync(int productId);
         Task AddAsync(ReviewFormModel model);
         Task EditAsync(ReviewFormModel model);
         Task DeleteAsync(int id);

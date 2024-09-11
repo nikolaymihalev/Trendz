@@ -110,5 +110,12 @@ namespace Trendz.Core.Services
                 PublishDate = entity.PublishDate
             };
         }
+
+        public async Task<int> GetReviewsForProductCountAsync(int productId)
+        {
+            return await repository.AllReadonly<Review>()
+                .Where(x => x.ProductId == productId)
+                .CountAsync();
+        }
     }
 }
