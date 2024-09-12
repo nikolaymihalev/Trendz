@@ -5,8 +5,15 @@
 @inject ISizeService sizeService
 @inject IBrandService brandService
 
-<div>
-    <div>
+<div class="product-container">
+    <div class="product-images-container">
+        @{
+            var images = await productService.GetAllImagesForProductAsync(Model.Id);
+            
+            
+        }
+    </div>
+    <div class="product-description-container">
         <h4>@Model.Name</h4>
         <div class="product-rating-stars">
             <ul>

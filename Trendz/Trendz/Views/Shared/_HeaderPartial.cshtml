@@ -18,16 +18,12 @@
                 if (User?.Identity?.IsAuthenticated == true)
                 {
                     <li>
-                        <details>
-                            <summary>
-                                <a class="user-container-link"><i class="fa-solid fa-user" style="color: #000;"></i></a>
-                            </summary>
+                            <a class="user-container-link" href=""><i class="fa-solid fa-user" style="color: #000;"></i></a>
                             <ul class="user-links-container">
                                 <li><a asp-action="Orders" asp-controller="User">My Orders</a></li>
                                 <li><a asp-action="RecentlyViewed" asp-controller="Product">Recently Viewed</a></li>
                                 <li><a asp-action="Logout" asp-controller="User">Logout</a></li>
                             </ul>
-                        </details>
                     </li>
                     <li class="user-link">
                         <a asp-controller="Home" asp-action="Cart">
@@ -66,3 +62,21 @@
         </ul>
     }
 </section>
+
+<script>
+    function userBtnHandler(){
+        const userBtn = document.querySelector('.user-container-link');
+        const userList = document.querySelector('.user-links-container');
+        const headerEl = document.querySelector('header');
+
+        userBtn.addEventListener('mouseover', ()=>{
+            if(userList.style.display === 'flex'){
+                userList.style.display = 'none';
+            }else {
+                userList.style.display = 'flex';
+            }
+        })
+    }
+
+    userBtnHandler();
+</script>
