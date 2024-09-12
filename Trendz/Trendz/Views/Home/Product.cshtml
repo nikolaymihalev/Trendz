@@ -3,6 +3,7 @@
 @inject IRatingService ratingService
 @inject IReviewService reviewService
 @inject ISizeService sizeService
+@inject IBrandService brandService
 
 <div>
     <div>
@@ -61,6 +62,21 @@
         <div class="product-buttons">
             <button>Add to cart</button>
             <button><i class="fa-regular fa-heart" style="color: #000"></i></button>
+        </div>
+        <div class="product-acc-section">
+            <button class="acc">Description</button>
+            <div class="panel">
+              <p>@Model.Description</p>
+            </div>
+
+            <button class="acc">About Store</button>
+            <div class="panel">
+                @{
+                    var brand = await brandService.GetByIdAsync(Model.BrandId);
+                    <p>@brand.Name</p>
+                    <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
+                }
+            </div>
         </div>
     </div>
 </div>
