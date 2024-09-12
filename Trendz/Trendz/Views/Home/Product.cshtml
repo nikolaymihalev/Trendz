@@ -14,13 +14,16 @@
                     foreach(var image in images)
                     {
                         <li>
-                             <img class="selecting-img" src="data:image/png;base64,@image.Image" />
+                             <img class="selecting-img" src="data:image/png;base64,@image.Image" onmouseover="
+                                const mainImgEl = document.querySelector('.main-img');
+                                mainImgEl.src = this.src;
+                                this.style.border = '1px solid #000';"                                 
+                                onmouseout="this.style.border = 'none';"/>
                         </li>
                     }
                 }
             </ul>
-           <img class="main-img" src="" />
-            
+           <img class="main-img" src="" />            
         }
     </div>
     <div class="product-description-container">
