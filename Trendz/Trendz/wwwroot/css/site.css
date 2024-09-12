@@ -407,3 +407,26 @@ body {
 .products-page-container li {
     list-style: outside none;
 }
+
+.product-acc-section .acc {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+    .active, .acc:hover {
+        background-color: #ccc;
+    }
+
+.product-acc-section .panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
