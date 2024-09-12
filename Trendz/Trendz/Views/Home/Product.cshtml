@@ -9,7 +9,17 @@
     <div class="product-images-container">
         @{
             var images = await productService.GetAllImagesForProductAsync(Model.Id);
-            
+            <ul>
+                @{
+                    foreach(var image in images)
+                    {
+                        <li>
+                             <img class="selecting-img" src="data:image/png;base64,@image.Image" />
+                        </li>
+                    }
+                }
+            </ul>
+           <img class="main-img" src="" />
             
         }
     </div>
