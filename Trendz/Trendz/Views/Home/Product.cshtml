@@ -10,19 +10,19 @@
     <div class="product-images-container">
         @{
             var images = await productService.GetAllImagesForProductAsync(Model.Id);
-                    <ul>
-                        @{
-                    foreach(var image in images)
-                    {
-                        <li>
-                            <img class="selecting-img" src="data:image/png;base64,@image.Image" 
-                                onmouseover="selectingImgMouseOverHandler(this)"
-                                onmouseout="selectingImgMouseOutHandler(this)" />
-                        </li>
-                    }
-                        }
-                    </ul>
-                   <img class="main-img" src="" />            
+            <ul>
+            @{
+                foreach(var image in images)
+                {
+                    <li>
+                        <img class="selecting-img" src="data:image/png;base64,@image.Image" 
+                            onmouseover="selectingImgMouseOverHandler(this)"
+                            onmouseout="selectingImgMouseOutHandler(this)" />
+                    </li>
+                }
+            }
+            </ul>
+            <img class="main-img" src="" />            
         }
     </div>
     <div class="product-description-container">
@@ -93,18 +93,21 @@
                 }
             </ul>
         </div>    
+        
         <div class="product-quantity">
             <p>Qty:</p>
             <div class="container">
-                <button class="minus-btn">-</button>
-                <textarea class="quantity">1</textarea>
-                <button class="plus-btn">+</button>
+                <button onclick="changeQuantityHandler('-')">-</button>
+                <textarea id="quantity">1</textarea>
+                <button onclick="changeQuantityHandler('+')">+</button>
             </div>
         </div>
+        
         <div class="product-buttons">
             <button>Add to cart</button>
             <button><i class="fa-regular fa-heart" style="color: #000"></i></button>
         </div>
+
         <div class="product-acc-section">
             <button class="acc">Description</button>
             <div class="panel">
@@ -128,31 +131,31 @@
         @{
             <p>@averageRating</p>
             <ul>                
-                @{
-            for (int i = 1; i <= 5; i++)
-            {
-                if (i <= averageRating)
+            @{
+                for (int i = 1; i <= 5; i++)
                 {
-                    <li>
-                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                    </li>
-                }
-                else if (i - 1 > averageRating)
-                {
-                    <li>
-                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                    </li>
-                }
-                else
-                {
-                    <li>
-                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                    </li>
+                    if (i <= averageRating)
+                    {
+                        <li>
+                            <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                        </li>
+                    }
+                    else if (i - 1 > averageRating)
+                    {
+                        <li>
+                            <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                        </li>
+                    }
                 }
             }
-                    }
             </ul>
-            }               
+        }               
     </div>
 </section>
 
@@ -183,6 +186,23 @@
 
     function selectingImgMouseOutHandler(element) {
         element.style.border = 'none';
+    }
+
+    function changeQuantityHandler(operation) { 
+        const textareaEl = document.getElementById('quantity');
+        let quantityValue = parseInt(textareaEl.value);
+
+        if (operation === '-') {
+            if (quantityValue > 1) {
+                quantityValue--;
+            }
+        } else if (operation === '+') {
+            if (quantityValue < 10) {
+                quantityValue++;
+            }
+        }
+
+        textareaEl.value = quantityValue;
     }
 
     accBtnsHandler();
