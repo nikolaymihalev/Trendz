@@ -72,7 +72,7 @@
                     {
                         var color = await colorService.GetByIdAsync(item.ColorId);   
                         <li>
-                            @color.Name
+                            <button class="product-color-btn">@color.Name</button>
                         </li>
                     }
                 }
@@ -87,7 +87,7 @@
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
                         <li>
-                            @size.Name
+                            <button class="product-size-btn">@size.Name</button>                            
                         </li>
                     }
                 }
