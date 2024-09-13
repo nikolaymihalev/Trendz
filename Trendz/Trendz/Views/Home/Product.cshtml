@@ -9,21 +9,19 @@
     <div class="product-images-container">
         @{
             var images = await productService.GetAllImagesForProductAsync(Model.Id);
-            <ul>
-                @{
+                    <ul>
+                        @{
                     foreach(var image in images)
                     {
                         <li>
-                             <img class="selecting-img" src="data:image/png;base64,@image.Image" onmouseover="
-                                const mainImgEl = document.querySelector('.main-img');
-                                mainImgEl.src = this.src;
-                                this.style.border = '1px solid #000';"                                 
-                                onmouseout="this.style.border = 'none';"/>
+                            <img class="selecting-img" src="data:image/png;base64,@image.Image" 
+                                onmouseover="selectingImgMouseOverHandler(this)"
+                                onmouseout="selectingImgMouseOutHandler(this)" />
                         </li>
                     }
-                }
-            </ul>
-           <img class="main-img" src="" />            
+                        }
+                    </ul>
+                   <img class="main-img" src="" />            
         }
     </div>
     <div class="product-description-container">
@@ -38,26 +36,26 @@
                     {
                         if (i <= averageRating)
                         {
-                            <li>
-                                <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                            </li>
+                                    <li>
+                                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                    </li>
                         }
                         else if (i - 1 > averageRating)
                         {
-                            <li>
-                                <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                            </li>
+                                    <li>
+                                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                    </li>
                         }
                         else
                         {
-                            <li>
-                                <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                            </li>
+                                    <li>
+                                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                    </li>
                         }
                     }
-                    <li>
-                        <p>(@reviewsCount Reviews)</p>
-                    </li>
+                            <li>
+                                <p>(@reviewsCount Reviews)</p>
+                            </li>
                 }                
             </ul>
         </div>
@@ -72,9 +70,9 @@
                     foreach (var item in sizes)
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
-                        <li>
-                            @size.Name
-                        </li>
+                                <li>
+                                    @size.Name
+                                </li>
                     }
                 }
             </ul>
@@ -93,8 +91,8 @@
             <div class="panel">
                 @{
                     var brand = await brandService.GetByIdAsync(Model.BrandId);
-                    <p>@brand.Name</p>
-                    <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
+                            <p>@brand.Name</p>
+                            <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
                 }
             </div>
         </div>
@@ -104,32 +102,32 @@
     <h3>Customer Reviews</h3>
     <div class="product-rating">
         @{
-            <p>@averageRating</p>
-        <ul>                
-            @{
+                    <p>@averageRating</p>
+                <ul>                
+                    @{
                 for (int i = 1; i <= 5; i++)
                 {
                     if (i <= averageRating)
                     {
-                        <li>
-                            <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                        </li>
+                                        <li>
+                                            <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                        </li>
                     }
                     else if (i - 1 > averageRating)
                     {
-                        <li>
-                            <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                        </li>
+                                        <li>
+                                            <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                        </li>
                     }
                     else
                     {
-                        <li>
-                            <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                        </li>
+                                        <li>
+                                            <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                        </li>
                     }
                 }
-                }
-            </ul>
+                        }
+                    </ul>
             }               
     </div>
 </section>
@@ -153,5 +151,15 @@
         }
     }
     
+    function selectingImgMouseOverHandler(element) { 
+        const mainImgEl = document.querySelector('.main-img');
+        mainImgEl.src = element.src;
+        element.style.border = '1px solid #000';
+    }
+
+    function selectingImgMouseOutHandler(element) {
+        element.style.border = 'none';
+    }
+
     accBtnsHandler();
 </script>
