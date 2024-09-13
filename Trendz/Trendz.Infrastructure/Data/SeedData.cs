@@ -176,13 +176,13 @@ namespace Trendz.Infrastructure.Data
             MSize = new Size()
             {
                 Id = 1,
-                Name = "M Size"
+                Name = "M"
             };
 
             SSize = new Size()
             {
                 Id = 2,
-                Name = "S Size"
+                Name = "S"
             };
         }
 
