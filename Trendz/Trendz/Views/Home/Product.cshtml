@@ -5,6 +5,7 @@
 @inject ISizeService sizeService
 @inject IBrandService brandService
 @inject IColorService colorService
+@inject UserManager<IdentityUser> userManager
 
 <section class="product-container">
     <div class="product-images-container">
@@ -151,11 +152,31 @@
                         <li>
                             <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
                         </li>
+                        }
                     }
                 }
-            }
             </ul>
         }               
+    </div>
+
+    <div class="product-reviews">
+        <ul>
+
+            @{
+                var reviews = await reviewService.GetAllReviewsForProductAsync(Model.Id);
+
+                foreach (var review in reviews)
+                {
+                    var user = await userManager.FindByIdAsync(review.UserId);
+                    //add rating
+                    <li>
+                        <h6>@user.UserName <span>@review.PublishDate.ToString("dd/MM/yyyy")</span></h6>
+                        
+                        <h4>@review.Comment</h4>
+                    </li>   
+                }
+            }
+        </ul>
     </div>
 </section>
 
