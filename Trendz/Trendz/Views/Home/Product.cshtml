@@ -4,6 +4,7 @@
 @inject IReviewService reviewService
 @inject ISizeService sizeService
 @inject IBrandService brandService
+@inject IColorService colorService
 
 <section class="product-container">
     <div class="product-images-container">
@@ -36,43 +37,58 @@
                     {
                         if (i <= averageRating)
                         {
-                                    <li>
-                                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                                    </li>
+                            <li>
+                                <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                            </li>
                         }
                         else if (i - 1 > averageRating)
                         {
-                                    <li>
-                                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                                    </li>
+                            <li>
+                                <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                            </li>
                         }
                         else
                         {
-                                    <li>
-                                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                                    </li>
+                            <li>
+                                <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                            </li>
                         }
                     }
-                            <li>
-                                <p>(@reviewsCount Reviews)</p>
-                            </li>
+                    <li>
+                        <p>(@reviewsCount Reviews)</p>
+                    </li>
                 }                
             </ul>
         </div>
         <div class="product-price">
             <h2>@Model.Price</h2>
         </div>
+        <div class="product-colors">
+            <p>Color</p>
+            <ul>
+                @{
+                    var colors = await productService.GetAllColorsForProductAsync(Model.Id);
+                    foreach (var item in colors)
+                    {
+                        var color = await colorService.GetByIdAsync(item.ColorId);   
+                        <li>
+                            @color.Name
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
         <div class="product-sizes">
-            <p>Choose Size</p>
+            <p>Size</p>
             <ul>
                 @{
                     var sizes = await productService.GetAllSizesForProductAsync(Model.Id);
                     foreach (var item in sizes)
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
-                                <li>
-                                    @size.Name
-                                </li>
+                        <li>
+                            @size.Name
+                        </li>
                     }
                 }
             </ul>
@@ -91,8 +107,8 @@
             <div class="panel">
                 @{
                     var brand = await brandService.GetByIdAsync(Model.BrandId);
-                            <p>@brand.Name</p>
-                            <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
+                    <p>@brand.Name</p>
+                    <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
                 }
             </div>
         </div>
@@ -102,32 +118,32 @@
     <h3>Customer Reviews</h3>
     <div class="product-rating">
         @{
-                    <p>@averageRating</p>
-                <ul>                
-                    @{
-                for (int i = 1; i <= 5; i++)
+            <p>@averageRating</p>
+            <ul>                
+                @{
+            for (int i = 1; i <= 5; i++)
+            {
+                if (i <= averageRating)
                 {
-                    if (i <= averageRating)
-                    {
-                                        <li>
-                                            <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                                        </li>
-                    }
-                    else if (i - 1 > averageRating)
-                    {
-                                        <li>
-                                            <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                                        </li>
-                    }
-                    else
-                    {
-                                        <li>
-                                            <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                                        </li>
-                    }
+                    <li>
+                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                    </li>
                 }
-                        }
-                    </ul>
+                else if (i - 1 > averageRating)
+                {
+                    <li>
+                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                    </li>
+                }
+            }
+                    }
+            </ul>
             }               
     </div>
 </section>
