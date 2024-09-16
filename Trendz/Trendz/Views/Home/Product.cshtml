@@ -168,10 +168,34 @@
                 foreach (var review in reviews)
                 {
                     var user = await userManager.FindByIdAsync(review.UserId);
-                    //add rating
+                    var rating = await ratingService.GetByIdAsync(review.RatingId);
                     <li>
                         <h6>@user.UserName <span>@review.PublishDate.ToString("dd/MM/yyyy")</span></h6>
-                        
+                        <ul>
+                            @{
+                            for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= rating.Value)
+                                {
+                                    <li>
+                                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                    </li>
+                                }
+                                else if (i - 1 > rating.Value)
+                                {
+                                    <li>
+                                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                    </li>
+                                }
+                            
+                            }}
+                        </ul>                        
                         <h4>@review.Comment</h4>
                     </li>   
                 }
