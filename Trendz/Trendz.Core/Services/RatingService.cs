@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Trendz.Core.Contracts;
 using Trendz.Core.Models.Rating;
 using Trendz.Infrastructure.Common;
@@ -10,10 +11,14 @@ namespace Trendz.Core.Services
     public class RatingService : IRatingService
     {
         private readonly IRepository repository;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public RatingService(IRepository _repository)
+        public RatingService(
+            IRepository _repository,
+            UserManager<IdentityUser> _userManager)
         {
             repository = _repository;
+            userManager = _userManager;
         }
 
         public async Task AddAsync(RatingFormModel model)
@@ -93,6 +98,25 @@ namespace Trendz.Core.Services
             }
 
             return 0;
+        }
+
+        public async Task<RatingInfoModel> GetByIdAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<Rating>(id);
+
+            if (entity == null)
+                throw new ArgumentNullException(ErrorMessageConstants.DoesntExistErrorMessage);
+
+            var user = await userManager.FindByIdAsync(entity.UserId);
+
+            return new RatingInfoModel()
+            {
+                Id = id,
+                UserId = entity.UserId,
+                UserUsername = user.UserName,
+                ProductId= entity.ProductId,
+                Value = entity.Value
+            };
         }
     }
 }

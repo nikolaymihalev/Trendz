@@ -8,6 +8,7 @@ namespace Trendz.Core.Contracts
         Task DeleteAsync(int id);
         Task EditAsync(RatingFormModel model);
         Task<double> GetAverageRatingAboutProductAsync(int productId);
+        Task<RatingInfoModel> GetByIdAsync(int id);
         Task<IEnumerable<RatingInfoModel>> GetAllRatingsAboutProductAsync(int productId);
     }
 }
