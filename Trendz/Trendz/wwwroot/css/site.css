@@ -430,3 +430,13 @@ body {
     display: none;
     overflow: hidden;
 }
+
+.product-container {
+    display: flex;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+    .product-container li {
+        list-style: none outside;
+    }
