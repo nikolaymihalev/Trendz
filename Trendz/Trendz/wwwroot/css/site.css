@@ -469,3 +469,17 @@ body {
     margin: 0;
     color: #FFD43B;
 }
+
+.product-price {
+    margin-bottom: 1em;
+}
+
+    .product-price .product-discount h5 {
+        font-size: 1.7rem;
+    }
+
+    .product-price .product-discount .normal-price {
+        opacity: 0.8;
+        text-decoration: line-through;
+        color: #000;
+    }
