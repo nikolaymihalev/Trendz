@@ -440,3 +440,19 @@ body {
     .product-container li {
         list-style: none outside;
     }
+
+.product-images-container {
+    display: flex;
+    gap: 0.5em;
+}
+
+    .product-images-container .selecting-img {
+        width: 80px;
+        height: 130px;
+        margin-bottom: 0.6em;
+    }
+
+    .product-images-container .main-img{
+        width: 700px;
+        height: 1000px;
+    }
