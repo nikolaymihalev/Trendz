@@ -277,21 +277,21 @@ body {
     align-items: center;
     width: 300px;
 }
-    .product-info-container .product-discount {
-        display: flex;
-        gap: 1em;
-        color: red;
-        align-items: center
-    }
+.product-discount {
+    display: flex;
+    gap: 1em;
+    color: red;
+    align-items: center
+}
 
-        .product-info-container .product-discount h5 {
-            margin: 0;
-        }
-        .product-info-container .product-discount p {
-            padding: 0.2em 0.5em;
-            border: 1px solid red;
-            margin: 0;
-        }
+    .product-discount h5 {
+        margin: 0;
+    }
+    .product-discount p {
+        padding: 0.2em 0.5em;
+        border: 1px solid red;
+        margin: 0;
+    }
 
 .product-info-container button{
     background: none;

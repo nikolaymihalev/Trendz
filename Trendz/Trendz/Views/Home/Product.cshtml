@@ -5,6 +5,7 @@
 @inject ISizeService sizeService
 @inject IBrandService brandService
 @inject IColorService colorService
+@inject IDiscountService discountService
 @inject UserManager<IdentityUser> userManager
 
 <section class="product-container">
@@ -62,7 +63,22 @@
             </ul>
         </div>
         <div class="product-price">
-            <h2>@Model.Price</h2>
+            @{
+                var discount = await discountService.GetProductDiscountAsync(Model.Id);
+
+                if (discount != null)
+                {
+                    <div class="product-discount">
+                        <h5>$@((Model.Price * (1 - discount.DiscountPercentage / 100)).ToString("f"))</h5>
+                        <p>-@Convert.ToInt32(discount.DiscountPercentage)%</p>
+                        <h5 class="normal-price">$@Model.Price</h5>
+                    </div>
+                }
+                else
+                {
+                    <h5>$@Model.Price</h5>
+                }
+            }
         </div>
         <div class="product-colors">
             <p>Color</p>
