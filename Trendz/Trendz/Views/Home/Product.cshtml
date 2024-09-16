@@ -27,7 +27,7 @@
         }
     </div>
     <div class="product-description-container">
-        <h4>@Model.Name</h4>
+        <h4 class="product-name">@Model.Name</h4>
         <div class="product-rating-stars">
             <ul>
                 @{
@@ -39,19 +39,19 @@
                         if (i <= averageRating)
                         {
                             <li>
-                                <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                <p><i class="fa-solid fa-star"></i></p>
                             </li>
                         }
                         else if (i - 1 > averageRating)
                         {
                             <li>
-                                <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                <p><i class="fa-regular fa-star"></i></p>
                             </li>
                         }
                         else
                         {
                             <li>
-                                <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                <p><i class="fa-solid fa-star-half-stroke"></i></p>
                             </li>
                         }
                     }
