@@ -15,5 +15,6 @@ namespace Trendz.Infrastructure.Data.Models
         public string Name { get; set; } = string.Empty;
 
         public ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
+        public ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
     }
 }

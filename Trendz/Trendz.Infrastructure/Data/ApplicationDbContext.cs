@@ -42,6 +42,8 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CartConfiguration());
             builder.ApplyConfiguration(new CouponConfiguration());
+            builder.ApplyConfiguration(new FavoriteProductConfiguration());
+            builder.ApplyConfiguration(new InventoryConfiguration());
             builder.ApplyConfiguration(new WishlistConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ProductImageConfiguration());
@@ -54,8 +56,7 @@ namespace Trendz.Infrastructure.Data
             builder.ApplyConfiguration(new OrderItemConfiguration());
             builder.ApplyConfiguration(new DiscountConfiguration());
             builder.ApplyConfiguration(new RatingConfiguration());
-            builder.ApplyConfiguration(new ReviewConfiguration());
-            builder.ApplyConfiguration(new FavoriteProductConfiguration());
+            builder.ApplyConfiguration(new ReviewConfiguration());            
 
             base.OnModelCreating(builder);
         }

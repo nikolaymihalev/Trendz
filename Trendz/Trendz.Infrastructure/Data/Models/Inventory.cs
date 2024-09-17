@@ -28,5 +28,8 @@ namespace Trendz.Infrastructure.Data.Models
 
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
+
+        [ForeignKey(nameof(SizeId))]
+        public Size Size { get; set; } = null!;
     }
 }
