@@ -483,3 +483,25 @@ body {
         text-decoration: line-through;
         color: #000;
     }
+
+.product-choosing-variants {
+    margin-top: 2em;
+}
+
+    .product-choosing-variants p {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .product-choosing-variants ul {
+        display: flex;
+        gap: 1em;
+        padding-left: 1em;
+    }
+
+    .product-choosing-variants li button {
+        background: #fff;
+        border: 1px solid #000;
+        border-radius: 1em;
+        padding: 0.4em;
+    }
