@@ -81,7 +81,7 @@
                 }
             }
         </div>
-        <div class="product-colors">
+        <div class="product-choosing-variants">
             <p>Color</p>
             <ul>
                 @{
@@ -95,8 +95,6 @@
                     }
                 }
             </ul>
-        </div>
-        <div class="product-sizes">
             <p>Size</p>
             <ul>
                 @{
@@ -105,12 +103,12 @@
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
                         <li>
-                            <button class="product-size-btn">@size.Name</button>                            
+                            <button class="product-size-btn">@size.Name</button>
                         </li>
                     }
                 }
             </ul>
-        </div>    
+        </div>
         
         <div class="product-quantity">
             <p>Qty:</p>
