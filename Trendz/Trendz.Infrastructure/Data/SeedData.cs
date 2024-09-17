@@ -23,6 +23,7 @@ namespace Trendz.Infrastructure.Data
             SeedReviews();
             SeedDiscounts();
             SeedFavoriteProducts();
+            SeedInventoryItems();
         }
 
         public IdentityUser Guest { get; set; } = null!;
@@ -49,6 +50,8 @@ namespace Trendz.Infrastructure.Data
         public Review FiveStarReview { get; set; } = null!;
         public Discount Discount20 { get; set; } = null!;
         public FavoriteProduct FavoriteProduct { get; set; } = null!;
+        public Inventory BlackTshirtSInStock { get; set; } = null!;
+        public Inventory BlackTshirtMInStock { get; set; } = null!;
 
         private void SeedUsers() 
         {
@@ -276,6 +279,25 @@ namespace Trendz.Infrastructure.Data
                 Id = 1,
                 ProductId = BlackTshirt.Id,
                 UserId = Guest.Id
+            };
+        }
+
+        private void SeedInventoryItems() 
+        {
+            BlackTshirtMInStock = new Inventory()
+            {
+                Id = 1,
+                ProductId = BlackTshirt.Id,
+                SizeId = MSize.Id,
+                QuantityInStock = 3
+            };
+
+            BlackTshirtSInStock = new Inventory()
+            {
+                Id = 2,
+                ProductId = BlackTshirt.Id,
+                SizeId = SSize.Id,
+                QuantityInStock = 5
             };
         }
     }

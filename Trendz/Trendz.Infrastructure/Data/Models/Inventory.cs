@@ -15,6 +15,10 @@ namespace Trendz.Infrastructure.Data.Models
         [Required]
         public int ProductId { get; set; }
 
+        [Comment("Size identifier")]
+        [Required]
+        public int SizeId { get; set; }
+
         [Comment("Product quantity in stock")]
         [Required]
         public int QuantityInStock { get; set; }
