@@ -9,5 +9,6 @@ namespace Trendz.Core.Contracts
         Task EditAsync(InventoryModel model);
         Task DeleteAsync(int id);
         Task<InventoryModel> GetByIdAsync(int id);
+        Task<int> GetProductInStockCountAsync(int productId, int sizeId);
     }
 }

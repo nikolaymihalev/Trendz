@@ -88,5 +88,16 @@ namespace Trendz.Core.Services
                 WarehouseLocation = entity.WarehouseLocation
             };
         }
+
+        public async Task<int> GetProductInStockCountAsync(int productId, int sizeId)
+        {
+            var entity = await repository.AllReadonly<Inventory>()
+                .FirstOrDefaultAsync(x => x.ProductId == productId && x.SizeId == sizeId);
+
+            if (entity != null)
+                return entity.QuantityInStock;
+
+            return 0;
+        }
     }
 }
