@@ -103,7 +103,7 @@
                     foreach (var item in sizes)
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
-                        var quantity = await inventoryService.GetProductInStockCountAsync(Model.Id, size.Id);
+                        var quantity = await inventoryService.GetProductQuantitytAsync(Model.Id, size.Id);
                         <li>
                             <button class="product-size-btn">@quantity (@size.Name)</button>
                         </li>

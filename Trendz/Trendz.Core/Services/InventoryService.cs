@@ -89,7 +89,7 @@ namespace Trendz.Core.Services
             };
         }
 
-        public async Task<int> GetProductInStockCountAsync(int productId, int sizeId)
+        public async Task<int> GetProductQuantitytAsync(int productId, int sizeId)
         {
             var entity = await repository.AllReadonly<Inventory>()
                 .FirstOrDefaultAsync(x => x.ProductId == productId && x.SizeId == sizeId);
