@@ -16,14 +16,14 @@
             string firstImage = images.FirstOrDefault().Image;
             <ul>
                 @{
-                foreach(var image in images)
-                {
-                    <li>
-                        <img class="selecting-img" src="data:image/png;base64,@image.Image" 
-                            onmouseover="selectingImgMouseOverHandler(this)"
-                            onmouseout="selectingImgMouseOutHandler(this)" />
-                    </li>
-                }
+                    foreach(var image in images)
+                    {
+                        <li>
+                            <img class="selecting-img" src="data:image/png;base64,@image.Image" 
+                                onmouseover="selectingImgMouseOverHandler(this)"
+                                onmouseout="selectingImgMouseOutHandler(this)" />
+                        </li>
+                    }
                 }
             </ul>
             <img class="main-img" src="data:image/png;base64,@firstImage" />
@@ -105,7 +105,7 @@
                         var size = await sizeService.GetByIdAsync(item.SizeId);
                         var quantity = await inventoryService.GetProductQuantitytAsync(Model.Id, size.Id);
                         <li>
-                            <button class="product-size-btn">@quantity (@size.Name)</button>
+                            <button class="product-size-btn" onclick="selectSize(this)">@quantity (@size.Name)</button>
                         </li>
                     }
                 }
@@ -169,7 +169,7 @@
                             <li>
                                 <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
                             </li>
-                            }
+                        }
                     }
                 }
             </ul>
@@ -178,7 +178,6 @@
 
     <div class="product-reviews">
         <ul>
-
             @{
                 var reviews = await reviewService.GetAllReviewsForProductAsync(Model.Id);
 
@@ -189,30 +188,30 @@
                     <li>
                         <h6>@user.UserName <span>@review.PublishDate.ToString("dd/MM/yyyy")</span></h6>
                         <ul>
-                        @{
-                            for (int i = 1; i <= 5; i++)
-                            {
-                                if (i <= rating.Value)
+                            @{
+                                for (int i = 1; i <= 5; i++)
                                 {
-                                    <li>
-                                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                                    </li>
-                                }
-                                else if (i - 1 > rating.Value)
-                                {
-                                    <li>
-                                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                                    </li>
-                                }
+                                    if (i <= rating.Value)
+                                    {
+                                        <li>
+                                            <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                        </li>
+                                    }
+                                    else if (i - 1 > rating.Value)
+                                    {
+                                        <li>
+                                            <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                        </li>
+                                    }
                             
+                                }
                             }
-                        }
                         </ul>                        
                         <h4>@review.Comment</h4>
                     </li>   
@@ -277,6 +276,12 @@
             if(quantity === '0'){
                 btn.disabled = true;
             }
+        }
+    }
+
+    function selectSize(element){ 
+        if (!element.disabled) { 
+            element.classList.add('selected-size');
         }
     }
 
