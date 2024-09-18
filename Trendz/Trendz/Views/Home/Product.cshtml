@@ -15,7 +15,7 @@
             var images = await productService.GetAllImagesForProductAsync(Model.Id);
             string firstImage = images.FirstOrDefault().Image;
             <ul>
-            @{
+                @{
                 foreach(var image in images)
                 {
                     <li>
@@ -24,7 +24,7 @@
                             onmouseout="selectingImgMouseOutHandler(this)" />
                     </li>
                 }
-            }
+                }
             </ul>
             <img class="main-img" src="data:image/png;base64,@firstImage" />
         }
@@ -149,27 +149,27 @@
         @{
             <p>@averageRating</p>
             <ul>                
-            @{
-                for (int i = 1; i <= 5; i++)
-                {
-                    if (i <= averageRating)
+                @{
+                    for (int i = 1; i <= 5; i++)
                     {
-                        <li>
-                            <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                        </li>
-                    }
-                    else if (i - 1 > averageRating)
-                    {
-                        <li>
-                            <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>
-                            <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                        </li>
+                        if (i <= averageRating)
+                        {
+                            <li>
+                                <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                            </li>
                         }
+                        else if (i - 1 > averageRating)
+                        {
+                            <li>
+                                <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                            </li>
+                            }
                     }
                 }
             </ul>
@@ -189,7 +189,7 @@
                     <li>
                         <h6>@user.UserName <span>@review.PublishDate.ToString("dd/MM/yyyy")</span></h6>
                         <ul>
-                            @{
+                        @{
                             for (int i = 1; i <= 5; i++)
                             {
                                 if (i <= rating.Value)
@@ -211,7 +211,8 @@
                                     </li>
                                 }
                             
-                            }}
+                            }
+                        }
                         </ul>                        
                         <h4>@review.Comment</h4>
                     </li>   
@@ -267,5 +268,18 @@
         textareaEl.value = quantityValue;
     }
 
+    function enableDisableSizeButtons() {
+        const sizeBtns = document.getElementsByClassName('product-size-btn');
+
+        for (const btn of sizeBtns) {
+            const [quantity, size] = btn.firstChild.data.split(' ');
+
+            if(quantity === '0'){
+                btn.disabled = true;
+            }
+        }
+    }
+
     accBtnsHandler();
+    enableDisableSizeButtons();
 </script>
