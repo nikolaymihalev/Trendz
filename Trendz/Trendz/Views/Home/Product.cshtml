@@ -6,6 +6,7 @@
 @inject IBrandService brandService
 @inject IColorService colorService
 @inject IDiscountService discountService
+@inject IInventoryService inventoryService
 @inject UserManager<IdentityUser> userManager
 
 <section class="product-container">
@@ -102,8 +103,9 @@
                     foreach (var item in sizes)
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
+                        var quantity = await inventoryService.GetProductInStockCountAsync(Model.Id, size.Id);
                         <li>
-                            <button class="product-size-btn">@size.Name</button>
+                            <button class="product-size-btn">@quantity (@size.Name)</button>
                         </li>
                     }
                 }
