@@ -14,19 +14,19 @@
         @{
             var images = await productService.GetAllImagesForProductAsync(Model.Id);
             string firstImage = images.FirstOrDefault().Image;
-                <ul>
-                    @{
+                            <ul>
+                                @{
                     foreach(var image in images)
                     {
-                                <li>
-                                    <img class="selecting-img" src="data:image/png;base64,@image.Image" 
-                                        onmouseover="selectingImgMouseOverHandler(this)"
-                                        onmouseout="selectingImgMouseOutHandler(this)" />
-                                </li>
+                                                        <li>
+                                                            <img class="selecting-img" src="data:image/png;base64,@image.Image" 
+                                                                onmouseover="selectingImgMouseOverHandler(this)"
+                                                                onmouseout="selectingImgMouseOutHandler(this)" />
+                                                        </li>
                     }
-                    }
-                </ul>
-                <img class="main-img" src="data:image/png;base64,@firstImage" />
+                                }
+                            </ul>
+                            <img class="main-img" src="data:image/png;base64,@firstImage" />
         }
     </div>
     <div class="product-description-container">
@@ -41,26 +41,26 @@
                     {
                         if (i <= averageRating)
                         {
-                                <li>
-                                    <p><i class="fa-solid fa-star"></i></p>
-                                </li>
+                                            <li>
+                                                <p><i class="fa-solid fa-star"></i></p>
+                                            </li>
                         }
                         else if (i - 1 > averageRating)
                         {
-                                <li>
-                                    <p><i class="fa-regular fa-star"></i></p>
-                                </li>
+                                            <li>
+                                                <p><i class="fa-regular fa-star"></i></p>
+                                            </li>
                         }
                         else
                         {
-                                <li>
-                                    <p><i class="fa-solid fa-star-half-stroke"></i></p>
-                                </li>
+                                            <li>
+                                                <p><i class="fa-solid fa-star-half-stroke"></i></p>
+                                            </li>
                         }
                     }
-                        <li>
-                            <p>(@reviewsCount Reviews)</p>
-                        </li>
+                                    <li>
+                                        <p>(@reviewsCount Reviews)</p>
+                                    </li>
                 }                
             </ul>
         </div>
@@ -70,15 +70,15 @@
 
                 if (discount != null)
                 {
-                        <div class="product-discount">
-                            <h5>$@((Model.Price * (1 - discount.DiscountPercentage / 100)).ToString("f"))</h5>
-                            <p>-@Convert.ToInt32(discount.DiscountPercentage)%</p>
-                            <h5 class="normal-price">$@Model.Price</h5>
-                        </div>
+                                    <div class="product-discount">
+                                        <h5>$@((Model.Price * (1 - discount.DiscountPercentage / 100)).ToString("f"))</h5>
+                                        <p>-@Convert.ToInt32(discount.DiscountPercentage)%</p>
+                                        <h5 class="normal-price">$@Model.Price</h5>
+                                    </div>
                 }
                 else
                 {
-                        <h5>$@Model.Price</h5>
+                                    <h5>$@Model.Price</h5>
                 }
             }
         </div>
@@ -90,9 +90,9 @@
                     foreach (var item in colors)
                     {
                         var color = await colorService.GetByIdAsync(item.ColorId);   
-                            <li>
-                                <button class="product-color-btn" style="background: @color.HexValue"></button>
-                            </li>
+                                <li>
+                                    <button class="product-color-btn" onclick="selectColor(this)" style="background: @color.HexValue"></button>
+                                </li>
                     }
                 }
             </ul>
@@ -104,9 +104,9 @@
                     {
                         var size = await sizeService.GetByIdAsync(item.SizeId);
                         var quantity = await inventoryService.GetProductQuantitytAsync(Model.Id, size.Id);
-                            <li>
-                                <button class="product-size-btn" onclick="selectSize(this)">@quantity (@size.Name)</button>
-                            </li>
+                                        <li>
+                                            <button class="product-size-btn" onclick="selectSize(this)">@quantity (@size.Name)</button>
+                                        </li>
                     }
                 }
             </ul>
@@ -136,8 +136,8 @@
             <div class="panel">
                 @{
                     var brand = await brandService.GetByIdAsync(Model.BrandId);
-                        <p>@brand.Name</p>
-                        <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
+                                    <p>@brand.Name</p>
+                                    <a asp-controller="Brand" asp-action="Home" asp-route-id="@brand.Id">View More</a>
                 }
             </div>
         </div>
@@ -147,32 +147,32 @@
     <h3>Customer Reviews</h3>
     <div class="product-rating">
         @{
-                <p>@averageRating</p>
-                <ul>                
-                    @{
+                            <p>@averageRating</p>
+                            <ul>                
+                                @{
                     for (int i = 1; i <= 5; i++)
                     {
                         if (i <= averageRating)
                         {
-                                    <li>
-                                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                                    </li>
+                                                            <li>
+                                                                <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                                            </li>
                         }
                         else if (i - 1 > averageRating)
                         {
-                                    <li>
-                                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                                    </li>
+                                                            <li>
+                                                                <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                                            </li>
                         }
                         else
                         {
-                                    <li>
-                                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                                    </li>
+                                                            <li>
+                                                                <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                                            </li>
                         }
                     }
-                    }
-                </ul>
+                                }
+                            </ul>
         }               
     </div>
 
@@ -185,36 +185,36 @@
                 {
                     var user = await userManager.FindByIdAsync(review.UserId);
                     var rating = await ratingService.GetByIdAsync(review.RatingId);
-                        <li>
-                            <h6>@user.UserName <span>@review.PublishDate.ToString("dd/MM/yyyy")</span></h6>
-                            <ul>
-                                @{
-                                for (int i = 1; i <= 5; i++)
+                                <li>
+                                    <h6>@user.UserName <span>@review.PublishDate.ToString("dd/MM/yyyy")</span></h6>
+                                    <ul>
+                                        @{
+                            for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= rating.Value)
                                 {
-                                    if (i <= rating.Value)
-                                    {
-                                                <li>
-                                                    <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
-                                                </li>
-                                    }
-                                    else if (i - 1 > rating.Value)
-                                    {
-                                                <li>
-                                                    <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
-                                                </li>
-                                    }
-                                    else
-                                    {
-                                                <li>
-                                                    <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
-                                                </li>
-                                    }
+                                                                    <li>
+                                                                        <p><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+                                                                    </li>
+                                }
+                                else if (i - 1 > rating.Value)
+                                {
+                                                                    <li>
+                                                                        <p><i class="fa-regular fa-star" style="color: #FFD43B;"></i></p>
+                                                                    </li>
+                                }
+                                else
+                                {
+                                                                    <li>
+                                                                        <p><i class="fa-solid fa-star-half-stroke" style="color: #FFD43B;"></i></p>
+                                                                    </li>
+                                }
                             
-                                }
-                                }
-                            </ul>                        
-                            <h4>@review.Comment</h4>
-                        </li>   
+                            }
+                                        }
+                                    </ul>                        
+                                    <h4>@review.Comment</h4>
+                                </li>   
                 }
             }
         </ul>
@@ -295,6 +295,26 @@
 
             element.classList.add('selected-size');
         }
+    }
+
+    function selectColor(element) {
+        const colorBtns = document.getElementsByClassName('product-color-btn');
+
+        for (const btn of colorBtns) {
+            if (btn.classList.contains('selected-color')) {
+                btn.classList.remove('selected-color');
+            }
+
+            btn.style.border = '1px solid #000';
+        }
+
+        if (element.style.background === "rgb(0, 0, 0)") {
+            element.style.border = '5px double #fff';
+        } else {
+            element.style.border = '3px double #000';
+        }
+
+        element.classList.add('selected-color');
     }
 
     accBtnsHandler();
